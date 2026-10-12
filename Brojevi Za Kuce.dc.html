@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Brojevi za kuće po meri | Fiber Graphics</title>
+<meta name="description" content="Kućni brojevi i tablice po vašem dizajnu — izaberite model, font i materijal. Otporni na vremenske uslove, isporuka širom Srbije.">
+<meta property="og:title" content="Brojevi za kuće po meri | Fiber Graphics">
+<meta property="og:description" content="Kućni brojevi i tablice po vašem dizajnu — izaberite model, font i materijal. Otporni na vremenske uslove, isporuka širom Srbije.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/logo-mali.webp" type="image/webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Montserrat:wght@600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:"Helvetica Neue",Helvetica,Arial,sans-serif; background:#f3f4f6; color:#1f2937; -webkit-font-smoothing:antialiased; }
+  a { color:#ff3737; text-decoration:none; }
+  a:hover { color:#e11d1d; }
+  ::selection { background:#ff3737; color:#f3f4f6; }
+  .fg-reveal { opacity: 0; transform: translateY(48px); transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1), transform 0.8s cubic-bezier(0.4,0,0.2,1); }
+  .fg-reveal.fg-in { opacity: 1; transform: none; }
+  .fg-bgsharp, .fg-mband { display:none; }
+  @media (max-width:820px) {
+    .fg-mhide { display:none !important; }
+    .fg-mdim { background:rgba(6,13,24,0.5) !important; }
+    #hero-broj { aspect-ratio:3/2; display:flex; flex-direction:column; justify-content:center; }
+    .fg-hero-pad { width:100%; padding:18px 18px !important; }
+    .fg-hero-pad h1 { font-size:36px !important; line-height:1.08 !important; }
+    .fg-hero-pad p { margin-top:8px !important; font-size:11px !important; line-height:1.45 !important; max-width:none !important; }
+    .fg-hero-pad .fg-hero-btns { margin-top:12px !important; gap:8px !important; flex-direction:column; align-items:flex-start; }
+    .fg-hero-pad .fg-hero-btns a { padding:9px 14px !important; font-size:12px !important; border-radius:10px !important; }
+    #recite { padding-bottom:0 !important; }
+    .fg-recite-box { aspect-ratio:6/5; padding:0 !important; display:flex; flex-direction:column; justify-content:center; }
+    .fg-recite-box > .fg-recite-in { padding:18px !important; }
+  }
+  @media (max-width:820px) {
+    .fg-kb-overlay { padding:0 !important; align-items:stretch !important; }
+    .fg-kb-modal { max-width:none !important; min-height:0 !important; max-height:none !important; height:100% !important; border-radius:0 !important; padding:52px 16px 24px !important; -webkit-overflow-scrolling:touch; }
+    .fg-kb-modal > button[aria-label="Zatvori"] { top:10px !important; right:10px !important; width:34px !important; height:34px !important; position:fixed !important; z-index:5; box-shadow:0 2px 8px rgba(0,0,0,0.15); }
+    .fg-kb-body { grid-template-columns:1fr !important; gap:22px !important; }
+    .fg-kb-models { height:auto !important; grid-auto-rows:92px !important; gap:8px !important; }
+    .fg-kb-models span[style*="bottom:8px"] { font-size:9.5px !important; padding:3px 6px !important; left:6px !important; bottom:6px !important; }
+    .fg-kb-modal input, .fg-kb-modal select, .fg-kb-modal textarea { font-size:16px !important; padding:10px 12px !important; }
+    .fg-kb-body > div:last-child { gap:12px !important; }
+    .fg-kb-body > div:last-child div[style*="grid-template-columns:repeat(auto-fill,minmax(150px"] { grid-template-columns:1fr 1fr !important; gap:6px !important; }
+    .fg-kb-body > div:last-child div[style*="grid-template-columns:repeat(auto-fill,minmax(150px"] button { padding:9px 10px !important; flex-direction:column !important; align-items:flex-start !important; gap:2px !important; }
+    .fg-kb-body > div:last-child button span[style*="white-space:nowrap"] { font-size:12.5px !important; } .fg-logo-big { display:none !important; } .fg-logo-mali { display:block !important; } }
+  .fg-navleft { display:flex; align-items:center; gap:14px; }
+  .fg-navright { display:flex; align-items:center; gap:30px; }
+  .fg-navlinks { display:flex; align-items:center; gap:30px; }
+  .fg-burger { display:none; background:none; border:none; cursor:pointer; padding:6px; }
+  .fg-fburger { display:none; background:none; border:none; cursor:pointer; padding:6px; }
+  .fg-fmenu { display:contents; }
+  @keyframes fg-navitem { from { opacity:0; transform:translateX(16px); } to { opacity:1; transform:translateX(0); } }
+  @keyframes fg-navup { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+  @media (max-width:820px) {
+    .fg-burger { display:flex; }
+    .fg-navlinks { position:absolute; top:100%; left:0; right:0; background:#000; flex-direction:column; align-items:flex-start; padding:20px 24px; gap:22px; box-shadow:0 18px 40px rgba(0,0,0,0.5); }
+    .fg-navlinks:not(.fg-open) { display:none; }
+    .fg-navlinks.fg-open > * { animation: fg-navitem 0.35s ease both; }
+    .fg-navlinks.fg-open > *:nth-child(1){animation-delay:0.05s}
+    .fg-navlinks.fg-open > *:nth-child(2){animation-delay:0.13s}
+    .fg-navlinks.fg-open > *:nth-child(3){animation-delay:0.21s}
+    .fg-navlinks.fg-open > *:nth-child(4){animation-delay:0.29s}
+    .fg-navlinks.fg-open > *:nth-child(5){animation-delay:0.37s}
+    .fg-svcdrop { left:0 !important; transform:none !important; padding-top:12px !important; z-index:40; }
+    .fg-navlinks.fg-svc-open > *:not(:nth-child(2)) { display:none; }
+    .fg-opcije-grid { grid-template-columns:1fr !important; gap:12px !important; margin-top:24px !important; max-width:300px; margin-left:auto; margin-right:auto; }
+    .fg-opcije-grid > div > div:first-child { aspect-ratio:5/2 !important; }
+    .fg-opcije-grid > div > div:last-child { padding:16px 18px 18px !important; }
+    .fg-opcije-grid > div > div:last-child > div:first-child { gap:10px !important; }
+    .fg-opcije-grid > div > div:last-child > div:first-child svg { width:24px !important; height:24px !important; }
+    .fg-opcije-grid > div > div:last-child > div:first-child > span:first-child { min-width:26px !important; height:26px !important; }
+    .fg-opcije-grid > div > div:last-child > div:first-child > span:first-child > span { font-size:21px !important; }
+    .fg-opcije-grid > div > div:last-child > div:first-child > span:last-child { font-size:11px !important; }
+    .fg-opcije-grid h3 { margin-top:10px !important; font-size:18px !important; }
+    .fg-opcije-grid p { margin-top:6px !important; font-size:13.5px !important; line-height:1.5 !important; }
+    .fg-feats-grid { grid-template-columns:1fr 1fr !important; gap:16px !important; }
+    .fg-ft { justify-content:flex-start !important; border-right:none !important; padding:6px 0 !important; }
+    .fg-kontakt-grid { grid-template-columns:1fr !important; padding-right:0 !important; }
+    .fg-kontakt-info { padding:48px 24px 28px !important; }
+    .fg-kontakt-map { height:260px !important; margin:0 24px 40px !important; }
+    .fg-fburger { display:flex; }
+    .fg-foot-bar { flex-wrap:wrap; position:relative; }
+    .fg-fmenu:not(.fg-open) { display:none; }
+    .fg-fmenu.fg-open { display:flex !important; position:absolute; bottom:100%; left:0; right:0; background:#fff; flex-direction:column; gap:22px; padding:24px 32px; box-shadow:0 -18px 40px rgba(0,0,0,0.12); z-index:60; }
+    .fg-fmenu.fg-open .fg-fnav > * { animation: fg-navup 0.4s ease both; }
+    .fg-fmenu.fg-open .fg-fnav > *:nth-child(1) { animation-delay:0.05s; }
+    .fg-fmenu.fg-open .fg-fnav > *:nth-child(2) { animation-delay:0.12s; }
+    .fg-fmenu.fg-open .fg-fnav > *:nth-child(3) { animation-delay:0.19s; }
+    .fg-fmenu.fg-open .fg-fnav > *:nth-child(4) { animation-delay:0.26s; }
+    .fg-fmenu.fg-open .fg-fsocial { animation: fg-navup 0.4s ease 0.33s both; }
+    .fg-fnav { flex-direction:column; align-items:flex-start; gap:16px; }
+  }
+  @keyframes broj-fade { 0%,20% { opacity: 1; } 25%,95% { opacity: 0; } 100% { opacity: 1; } }
+  @keyframes fg-hero-bg { from { transform: translateY(-70px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  @keyframes fg-hero-text { from { transform: translateX(-60px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+  .fg-hero-bg { opacity: 0; transform: translateY(-70px); }
+  .fg-hero-text { opacity: 0; transform: translateX(-60px); }
+  .fg-hero-in .fg-hero-bg { animation: fg-hero-bg 1s cubic-bezier(0.22,1,0.36,1) forwards; }
+  .fg-hero-in .fg-hero-text { animation: fg-hero-text 0.9s cubic-bezier(0.22,1,0.36,1) 0.15s forwards; }
+  @keyframes bk-trace { 0% { offset-distance: 0%; } 100% { offset-distance: 100%; } }
+  @keyframes bk-spark { 0%,100% { transform: scale(0.7); opacity: 0.55; } 50% { transform: scale(1.25); opacity: 1; } }
+  @keyframes bk-dot { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
+</style>
+</helmet>
+<div style="background:#f3f4f6;color:#1f2937;overflow-x:clip;">
+
+  <!-- PRELOADER -->
+  <div style="position:fixed;inset:0;z-index:9999;background:radial-gradient(circle at 50% 42%,#16171b,#0a0a0c 70%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px;opacity:{{ loaderOpacity }};pointer-events:{{ loaderPointer }};transition:opacity 0.6s ease;">
+    <svg viewBox="0 0 600 360" style="width:min(82vw,480px);height:auto;overflow:visible;">
+      <defs>
+        <linearGradient id="bk-plate" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#33353b"/><stop offset="50%" stop-color="#212227"/><stop offset="100%" stop-color="#17181c"/></linearGradient>
+        <radialGradient id="bk-spark"><stop offset="0%" stop-color="#fff"/><stop offset="30%" stop-color="#ff7a4d"/><stop offset="70%" stop-color="#ff2a2a"/><stop offset="100%" stop-color="rgba(255,42,42,0)"/></radialGradient>
+        <linearGradient id="bk-beam" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(255,42,42,0)"/><stop offset="100%" stop-color="#ff2f2f"/></linearGradient>
+      </defs>
+      <!-- plate -->
+      <rect x="90" y="150" width="420" height="180" rx="20" fill="url(#bk-plate)" stroke="#3c3e45" stroke-width="2"></rect>
+      <circle cx="122" cy="240" r="9" fill="#101114" stroke="#44464d" stroke-width="1.5"></circle>
+      <circle cx="478" cy="240" r="9" fill="#101114" stroke="#44464d" stroke-width="1.5"></circle>
+      <!-- engraved digits: faint base + red animated draw -->
+      <text x="300" y="300" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-weight="700" font-size="150" fill="none" stroke="#2b2d33" stroke-width="3">27</text>
+      <text x="300" y="300" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-weight="700" font-size="150" fill="none" stroke="#ff2f2f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="900" stroke-dashoffset="900" style="filter:drop-shadow(0 0 5px rgba(255,47,47,0.85));">
+        27
+        <animate attributeName="stroke-dashoffset" values="900;0;0;900" keyTimes="0;0.55;0.82;1" dur="3s" repeatCount="indefinite"></animate>
+      </text>
+      <!-- laser head + beam + spark, tracing the digit edges -->
+      <g>
+        <rect x="-22" y="-208" width="44" height="46" rx="7" fill="#1b1c20" stroke="#3a3b41" stroke-width="2"></rect>
+        <rect x="-12" y="-164" width="24" height="24" rx="5" fill="#0f1013" stroke="#3a3b41" stroke-width="1.5"></rect>
+        <rect x="-4" y="-142" width="8" height="8" fill="#2a2b30"></rect>
+        <rect x="-2" y="-130" width="4" height="130" fill="url(#bk-beam)" style="filter:drop-shadow(0 0 6px rgba(255,47,47,0.9));"></rect>
+        <circle cx="0" cy="0" r="14" fill="url(#bk-spark)" style="filter:drop-shadow(0 0 10px rgba(255,47,47,0.95));"></circle>
+        <animateMotion dur="3s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear" path="M 205 210 Q 250 182 290 218 L 220 292 L 292 300 M 318 196 L 412 196 L 352 300"></animateMotion>
+      </g>
+    </svg>
+  </div>
+
+  <header style="position:sticky;top:0;z-index:50;background:#000000;">
+    <nav style="position:relative;max-width:1240px;margin:0 auto;padding:18px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;">
+      <div class="fg-navleft">
+        <button class="fg-burger" onClick="{{ toggleMenu }}" aria-label="Meni"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 7h16M4 12h16M4 17h16" stroke="#e5e7eb" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <a href="Fiber Graphics.dc.html" style="display:flex;align-items:center;">
+          <img fetchpriority="high" class="fg-logo-big" src="assets/logo.svg" alt="Fiber Graphics" style="height:40px;width:auto;display:block;"><img fetchpriority="high" class="fg-logo-mali" src="assets/logo-mali.webp" alt="Fiber Graphics" style="height:38px;width:auto;border-radius:8px;display:none;">
+        </a>
+      </div>
+      <div class="fg-navright">
+      <div class="fg-navlinks {{ menuClass }}" style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:14px;letter-spacing:0.08em;text-transform:uppercase;">
+        <a href="Fiber Graphics.dc.html" style="color:#e5e7eb;transition:color 0.22s,transform 0.22s;" style-hover="color:#ff3737;transform:translateY(-2px);">Početna</a>
+        <div style="position:relative;" onMouseEnter="{{ openSvc }}" onMouseLeave="{{ closeSvc }}">
+          <a href="Fiber Graphics.dc.html#usluge" onClick="{{ toggleSvc }}" style="color:#e5e7eb;transition:color 0.22s;display:inline-flex;align-items:center;gap:6px;" style-hover="color:#ff3737;">Usluge <span style="display:flex;transform:rotate({{ svcRot }});transition:transform 0.22s;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9l6 6 6-6" stroke="#ff3737" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+          <div class="fg-svcdrop" style="position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY({{ svcShift }});padding-top:16px;opacity:{{ svcOpacity }};pointer-events:{{ svcPointer }};transition:opacity 0.2s,transform 0.2s;z-index:30;">
+            <div style="background:#ffffff;border:1px solid rgba(255,55,55,0.28);border-radius:12px;min-width:210px;padding:8px;box-shadow:0 18px 44px rgba(31,41,55,0.16);display:flex;flex-direction:column;">
+              <sc-for list="{{ svcLinks }}" as="l" hint-placeholder-count="6">
+                <a href="{{ l.href }}" style="font-family:'Montserrat',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.04em;text-transform:uppercase;color:#374151;padding:11px 14px;border-radius:8px;opacity:{{ l.op }};transform:translateX({{ l.x }});transition:opacity 0.35s ease {{ l.delay }},transform 0.35s ease {{ l.delay }},background 0.18s,color 0.18s;" style-hover="background:rgba(255,55,55,0.12);color:#ff3737;">{{ l.label }}</a>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+        <a href="Galerija.dc.html" style="color:#e5e7eb;transition:color 0.22s,transform 0.22s;" style-hover="color:#ff3737;transform:translateY(-2px);">Galerija</a>
+        <a href="#kontakt" style="color:#e5e7eb;transition:color 0.22s,transform 0.22s;" style-hover="color:#ff3737;transform:translateY(-2px);">Kontakt</a>
+        <a href="Korpa.dc.html" style="border:1px solid #ff3737;color:#ff3737;padding:10px 18px;border-radius:15px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;transition:background 0.22s,color 0.22s,transform 0.22s,box-shadow 0.22s;" style-hover="background:#ff3737;color:#f3f4f6;transform:translateY(-2px);box-shadow:0 8px 20px rgba(255,55,55,0.28);">Poruči</a>
+      </div>
+        <a href="Korpa.dc.html" aria-label="Korpa" style="position:relative;display:flex;align-items:center;justify-content:center;transition:transform 0.22s;" style-hover="transform:translateY(-2px);"><img src="assets/cart.webp" alt="Korpa" style="width:16px;height:16px;image-rendering:pixelated;filter:brightness(0) invert(1);display:block;"><sc-if value="{{ hasCartCount }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;top:-9px;right:-11px;min-width:17px;height:17px;padding:0 4px;border-radius:999px;background:#ff3737;color:#ffffff;font-family:'Montserrat',sans-serif;font-weight:700;font-size:10px;line-height:17px;text-align:center;box-shadow:0 0 0 2px #000000;">{{ cartCount }}</span></sc-if></a>
+      </div>
+    </nav>
+  </header>
+
+  <section id="hero-broj" style="position:relative;overflow:hidden;background:#0d1420;">
+    <div class="fg-hero-bg fg-bgm-hero" style="position:absolute;inset:0;background:url('assets/hero-brojevi.webp') center center/cover no-repeat;"></div>
+    <div class="fg-hero-bg fg-mband" style="position:absolute;inset:0;pointer-events:none;"><div class="fg-bgsharp" style="background-image:url('assets/hero-brojevi.webp');"></div></div>
+    <div class="fg-hero-bg fg-mhide" style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(6,13,24,0.92) 20%,rgba(6,13,24,0.5) 55%,rgba(6,13,24,0.15) 82%);"></div>
+    <div class="fg-hero-bg fg-mdim" style="position:absolute;inset:0;background:rgba(6,13,24,0.2);"></div>
+    <div class="fg-hero-pad" style="position:relative;z-index:2;max-width:1240px;margin:0 auto;padding:171px 32px 196px;">
+      <div class="fg-hero-text" style="max-width:600px;">
+        <h1 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:52px;line-height:1.05;letter-spacing:-0.02em;color:#f6f7f9;">Kućni brojevi<br>koji traju</h1>
+        <p style="margin-top:22px;font-size:18px;line-height:1.6;color:#ffffff;max-width:480px;">Moderni, elegantni i dugotrajni kućni brojevi od visokokvalitetnih materijala. Otporni na vremenske uslove, UV zračenje i vlagu — uz preciznu lasersku obradu.</p>
+        <div class="fg-hero-btns" style="margin-top:34px;display:flex;gap:16px;flex-wrap:wrap;">
+          <a href="#recite" style="background:#ff3737;color:#ffffff;font-weight:600;padding:15px 28px;border-radius:15px;font-size:15px;transition:background 0.22s,transform 0.22s;" style-hover="background:#e11d1d;transform:translateY(-2px);">Naruči svoj broj</a>
+          <a href="#opcije" style="border:1px solid rgba(255,255,255,0.3);color:#f6f7f9;padding:15px 28px;border-radius:15px;font-size:15px;transition:border-color 0.22s,color 0.22s,transform 0.22s;" style-hover="border-color:#ff3737;color:#ff3737;transform:translateY(-2px);">Opcije izrade</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="opcije" style="background:#f4f3f1;">
+    <div style="max-width:1240px;margin:0 auto;padding:90px 32px 80px;">
+      <h2 style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(34px,4.4vw,58px);line-height:1.06;letter-spacing:-0.03em;color:#1f2937;">Prilagodite svakom detalju</h2>
+      <div class="fg-opcije-grid" style="margin-top:44px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;">
+        <div style="background:#f7f7f6;border:1px solid rgba(31,41,55,0.1);border-radius:10px;overflow:hidden;box-shadow:0 1px 2px rgba(31,41,55,0.04);display:flex;flex-direction:column;">
+          <div style="aspect-ratio:2/1;background:#2a2b2e url('assets/opcija-dimenzije.webp') center/cover no-repeat;"></div>
+          <div style="padding:30px 36px 38px;">
+            <div style="display:flex;align-items:center;gap:18px;">
+              <span style="display:flex;align-items:center;justify-content:center;min-width:36px;height:36px;"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ff3737" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9V3h6M21 9V3h-6M3 15v6h6M21 15v6h-6M3 3l7 7M21 3l-7 7M3 21l7-7M21 21l-7-7"/></svg></span>
+              <span style="font-family:'Montserrat',sans-serif;font-weight:600;font-size:13px;letter-spacing:0.2em;text-transform:uppercase;color:#374151;">Dimenzije</span>
+            </div>
+            <h3 style="margin-top:18px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:26px;letter-spacing:-0.015em;color:#1f2937;">Svaka veličina</h3>
+            <p style="margin-top:12px;font-size:16.5px;line-height:1.65;color:#6b7280;text-wrap:pretty;">Od diskretnih do upadljivih — dimenzije prilagođene vašem objektu.</p>
+          </div>
+        </div>
+        <div style="background:#f7f7f6;border:1px solid rgba(31,41,55,0.1);border-radius:10px;overflow:hidden;box-shadow:0 1px 2px rgba(31,41,55,0.04);display:flex;flex-direction:column;">
+          <div style="aspect-ratio:2/1;background:#2a2b2e url('assets/opcija-font.webp') center/cover no-repeat;"></div>
+          <div style="padding:30px 36px 38px;">
+            <div style="display:flex;align-items:center;gap:18px;">
+              <span style="display:flex;align-items:center;justify-content:center;min-width:36px;height:36px;"><span style="font-family:'Montserrat',sans-serif;font-weight:500;font-size:30px;line-height:1;color:#ff3737;">Aa</span></span>
+              <span style="font-family:'Montserrat',sans-serif;font-weight:600;font-size:13px;letter-spacing:0.2em;text-transform:uppercase;color:#374151;">Font</span>
+            </div>
+            <h3 style="margin-top:18px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:26px;letter-spacing:-0.015em;color:#1f2937;">Različiti fontovi</h3>
+            <p style="margin-top:12px;font-size:16.5px;line-height:1.65;color:#6b7280;text-wrap:pretty;">Odaberite stil koji se uklapa u arhitekturu i vaš ukus.</p>
+          </div>
+        </div>
+        <div style="background:#f7f7f6;border:1px solid rgba(31,41,55,0.1);border-radius:10px;overflow:hidden;box-shadow:0 1px 2px rgba(31,41,55,0.04);display:flex;flex-direction:column;">
+          <div style="aspect-ratio:2/1;background:#2a2b2e url('assets/opcija-materijal.webp') center/cover no-repeat;"></div>
+          <div style="padding:30px 36px 38px;">
+            <div style="display:flex;align-items:center;gap:18px;">
+              <span style="display:flex;align-items:center;justify-content:center;min-width:36px;height:36px;"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ff3737" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/><path d="M3 17.5l9 5 9-5"/></svg></span>
+              <span style="font-family:'Montserrat',sans-serif;font-weight:600;font-size:13px;letter-spacing:0.2em;text-transform:uppercase;color:#374151;">Materijal</span>
+            </div>
+            <h3 style="margin-top:18px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:26px;letter-spacing:-0.015em;color:#1f2937;">Kvalitetni materijali</h3>
+            <p style="margin-top:12px;font-size:16.5px;line-height:1.65;color:#6b7280;text-wrap:pretty;">Otporni na sunce, vlagu i mraz — za dug vek trajanja.</p>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:44px;height:1px;background:rgba(31,41,55,0.12);"></div>
+      <div class="fg-feats-grid" style="margin-top:30px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));">
+        <div class="fg-ft" style="display:flex;align-items:center;gap:18px;justify-content:flex-start;padding:6px 24px;border-right:1px solid rgba(31,41,55,0.14);">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ff3737" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 16a4 4 0 01-.5-8 5.5 5.5 0 0110.6 1.5A3.5 3.5 0 0117 16z"/><path d="M9 19l-1 2M13 19l-1 2M17 19l-1 2"/></svg>
+          <span style="font-family:'Montserrat',sans-serif;font-weight:600;font-size:17px;color:#1f2937;">Otporni na vremenske uslove</span>
+        </div>
+        <div class="fg-ft" style="display:flex;align-items:center;gap:18px;justify-content:center;padding:6px 24px;border-right:1px solid rgba(31,41,55,0.14);">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ff3737" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <span style="font-family:'Montserrat',sans-serif;font-weight:600;font-size:17px;color:#1f2937;">UV postojani</span>
+        </div>
+        <div class="fg-ft" style="display:flex;align-items:center;gap:18px;justify-content:center;padding:6px 24px;border-right:1px solid rgba(31,41,55,0.14);">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ff3737" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19"/><circle cx="12" cy="12" r="2"/></svg>
+          <span style="font-family:'Montserrat',sans-serif;font-weight:600;font-size:17px;color:#1f2937;">Laserska obrada</span>
+        </div>
+        <div class="fg-ft" style="display:flex;align-items:center;gap:18px;justify-content:flex-end;padding:6px 24px;">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ff3737" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8v10H3z"/><path d="M10 14h4v4h-4z"/></svg>
+          <span style="font-family:'Montserrat',sans-serif;font-weight:600;font-size:17px;color:#1f2937;">Za kuće i firme</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="recite" style="scroll-margin-top:80px;padding:0 0 90px;">
+    <div class="fg-recite-box" style="position:relative;overflow:hidden;padding:120px 0 320px;">
+      <div class="fg-mband fg-mband-sq">
+        <div class="fg-bgsharp" style="background-image:url('assets/broj-2.webp');animation:broj-fade 8s ease-in-out -2s infinite;"></div>
+        <div class="fg-bgsharp" style="background-image:url('assets/broj-3.webp');animation:broj-fade 8s ease-in-out -4s infinite;"></div>
+        <div class="fg-bgsharp" style="background-image:url('assets/broj-4.webp');animation:broj-fade 8s ease-in-out -6s infinite;"></div>
+        <div class="fg-bgsharp" style="background-image:url('assets/broj-1.webp');animation:broj-fade 8s ease-in-out infinite;"></div>
+      </div>
+      <div class="fg-bgm-b2" style="position:absolute;inset:0;background:#0d1420 url('assets/broj-2.webp') center/cover no-repeat;animation:broj-fade 8s ease-in-out -2s infinite;"></div>
+      <div class="fg-bgm-b3" style="position:absolute;inset:0;background:#0d1420 url('assets/broj-3.webp') center/cover no-repeat;animation:broj-fade 8s ease-in-out -4s infinite;"></div>
+      <div class="fg-bgm-b4" style="position:absolute;inset:0;background:#0d1420 url('assets/broj-4.webp') center/cover no-repeat;animation:broj-fade 8s ease-in-out -6s infinite;"></div>
+      <div class="fg-bgm-b1" style="position:absolute;inset:0;background:#0d1420 url('assets/broj-1.webp') center/cover no-repeat;animation:broj-fade 8s ease-in-out infinite;"></div>
+      <div style="position:absolute;inset:0;background:rgba(6,13,24,0.58);"></div>
+      <div class="fg-recite-in" style="position:relative;z-index:2;max-width:1240px;margin:0 auto;padding:0 32px;display:flex;flex-direction:column;align-items:center;text-align:center;">
+        <div><h2 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:32px;color:#ffffff;">Recite nam vaš broj</h2><p style="margin-top:10px;font-size:16px;color:#ffffff;">Dimenzije, font i materijal — mi izrađujemo ostalo.</p></div>
+        <a href="#recite" onClick="{{ openForm }}" style="margin-top:24px;background:#ff3737;color:#ffffff;font-weight:600;padding:15px 30px;border-radius:10px;font-size:15px;cursor:pointer;" style-hover="background:#e11d1d;">Kreiraj svoj broj</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAKT -->
+  <section id="kontakt" style="padding:80px 0;background:#f0f1f3;">
+    <div class="fg-kontakt-grid" style="background:#f0f1f3;display:grid;grid-template-columns:1fr 435px;align-items:center;padding-right:150px;">
+      <div class="fg-kontakt-info" style="padding:56px 48px 56px 150px;">
+        <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:36px;letter-spacing:-0.02em;color:#1f2937;line-height:1.1;">Kontaktirajte nas</h2>
+        <p style="margin-top:16px;font-size:16px;line-height:1.6;color:#6b7280;max-width:380px;">Pišite nam ili pozovite – brzo, jednostavno i bez komplikacija.</p>
+        <div style="margin-top:36px;display:flex;flex-direction:column;gap:22px;">
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="5" width="18" height="14" rx="2" stroke="#ff3737" stroke-width="2"/><path d="M4 7l8 6 8-6" stroke="#ff3737" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#9ca3af;text-transform:uppercase;">E-mail</span></div>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=office@fibergraphics.rs" target="_blank" rel="noopener" style="font-size:18px;color:#1f2937;" style-hover="color:#ff3737;">office@fibergraphics.rs</a>
+          </div>
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 005 5L16 13l5 2v3a2 2 0 01-2 2A16 16 0 013 5a2 2 0 012-1z" stroke="#ff3737" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#9ca3af;text-transform:uppercase;">Telefon</span></div>
+            <a href="tel:+381601415900" style="font-size:18px;color:#1f2937;" style-hover="color:#ff3737;">+381 60 1415 900</a>
+          </div>
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 21s7-6.2 7-11a7 7 0 10-14 0c0 4.8 7 11 7 11z" stroke="#ff3737" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.5" stroke="#ff3737" stroke-width="2"/></svg><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#9ca3af;text-transform:uppercase;">Adresa</span></div>
+            <a href="https://maps.app.goo.gl/VWrcq1JF8EeAAm9v5" style="font-size:18px;color:#1f2937;" style-hover="color:#ff3737;">Kosovska 53, Aranđelovac</a>
+          </div>
+        </div>
+      </div>
+      <div class="fg-kontakt-map" style="border:1px solid rgba(31,41,55,0.12);border-radius:12px;height:310px;overflow:hidden;">
+        <iframe title="Kosovska 53, Aranđelovac" src="https://maps.google.com/maps?q=Kosovska%2053%2C%20Aran%C4%91elovac&t=&z=16&ie=UTF8&iwloc=&output=embed" style="width:100%;height:100%;border:0;display:block;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <sc-if value="{{ formOpen }}" hint-placeholder-val="{{ false }}">
+    <div class="fg-kb-overlay" onClick="{{ closeForm }}" style="position:fixed;inset:0;z-index:200;background:rgba(6,13,24,0.72);display:flex;align-items:center;justify-content:center;padding:24px;">
+      <div class="fg-kb-modal" onClick="{{ stopForm }}" style="position:relative;width:100%;max-width:1120px;min-height:min(680px, calc(100vh - 48px));max-height:calc(100vh - 48px);overflow:auto;background:#ffffff;border-radius:16px;box-shadow:0 30px 80px rgba(0,0,0,0.45);padding:56px 40px 32px;display:flex;flex-direction:column;">
+        <button onClick="{{ closeForm }}" aria-label="Zatvori" style="position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;border:none;background:#f3f4f6;color:#1f2937;font-size:20px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s,color 0.2s;" style-hover="background:#ff3737;color:#ffffff;">×</button>
+        <div class="fg-kb-body" style="flex:none;display:grid;grid-template-columns:1fr 1fr;gap:28px;">
+          <div style="display:flex;flex-direction:column;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+              <div style="min-width:0;">
+                <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;color:#1f2937;line-height:1.1;">Izaberite model</div>
+                <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#ff3737;margin-top:3px;">{{ kbSetLabel }}</div>
+              </div>
+            </div>
+            <div style="font-size:13px;color:#6b7280;margin-bottom:14px;">{{ modelHint }}</div>
+            <div class="fg-kb-models" style="flex:none;padding:2px;display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:clamp(64px, calc((100vh - 300px) / 4), 140px);gap:10px;">
+              <sc-for list="{{ kbModels }}" as="m" hint-placeholder-count="8">
+                <button onClick="{{ m.pick }}" aria-label="{{ m.label }}" style="position:relative;padding:0;border:2px solid {{ m.border }};border-radius:12px;background:#f3f4f6;overflow:hidden;cursor:pointer;transition:border-color 0.2s,transform 0.2s,box-shadow 0.2s;box-shadow:{{ m.shadow }};" style-hover="transform:translateY(-2px);">
+                  <span style="position:absolute;inset:0;background-image:{{ m.bg }};background-size:cover;background-position:center;"></span>
+                  <span style="position:absolute;inset:0;display:{{ m.ph }};align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#9ca3af;text-align:center;padding:0 10px 22px;">[ model uskoro ]</span>
+                  <span style="position:absolute;left:8px;bottom:8px;background:rgba(13,20,32,0.78);color:#ffffff;font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;padding:4px 8px;border-radius:6px;">{{ m.label }}</span>
+                  <span style="position:absolute;top:8px;right:8px;width:24px;height:24px;border-radius:50%;background:#ff3737;color:#ffffff;display:{{ m.check }};align-items:center;justify-content:center;font-size:14px;font-weight:700;">✓</span>
+                </button>
+              </sc-for>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;margin-top:12px;">
+              <button onClick="{{ kbPrevSet }}" aria-label="Prethodni modeli" style="width:34px;height:34px;flex-shrink:0;border-radius:50%;border:1px solid rgba(31,41,55,0.18);background:#ffffff;color:#1f2937;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s,color 0.2s,border-color 0.2s;" style-hover="background:#ff3737;color:#ffffff;border-color:#ff3737;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              <button onClick="{{ kbNextSet }}" aria-label="Sledeći modeli" style="width:34px;height:34px;flex-shrink:0;border-radius:50%;border:1px solid rgba(31,41,55,0.18);background:#ffffff;color:#1f2937;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s,color 0.2s,border-color 0.2s;" style-hover="background:#ff3737;color:#ffffff;border-color:#ff3737;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;color:#1f2937;">Vaš broj</div>
+            <div style="flex-shrink:0;position:relative;aspect-ratio:16/10;border-radius:12px;background:#f3f4f6;overflow:hidden;border:1px solid rgba(31,41,55,0.1);display:flex;align-items:center;justify-content:center;">
+              <sc-if value="{{ kbHasPhoto }}" hint-placeholder-val="{{ false }}">
+                {{ kbPreviewImg }}
+                <div style="position:absolute;left:10px;bottom:10px;background:rgba(255,255,255,0.92);border-radius:8px;padding:5px 9px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:10px;letter-spacing:0.04em;text-transform:uppercase;color:#1f2937;">{{ kbModelLabel }}</div>
+              </sc-if>
+              <sc-if value="{{ kbNoModel }}" hint-placeholder-val="{{ true }}">
+                <span style="font-size:14px;color:#6b7280;text-align:center;padding:0 20px;">{{ kbPreviewText }}</span>
+              </sc-if>
+            </div>
+            <sc-if value="{{ kbModelErr }}" hint-placeholder-val="{{ false }}"><p style="margin-top:-6px;font-size:12px;color:#e11d1d;">Niste izabrali model.</p></sc-if>
+            <sc-if value="{{ kbHouse }}" hint-placeholder-val="{{ true }}">
+            <div style="display:grid;grid-template-columns:{{ kbAddrCols }};gap:10px;">
+              <sc-if value="{{ kbNeedStreet }}" hint-placeholder-val="{{ true }}">
+              <div>
+                <input value="{{ kb.addr }}" onChange="{{ kb.set_addr }}" type="text" placeholder="Adresa (ulica)" style="width:100%;padding:11px 13px;border-radius:10px;font-size:15px;font-family:inherit;color:#1f2937;background:#ffffff;border:1px solid {{ kb.b_addr }};">
+                <sc-if value="{{ kb.e_addr }}" hint-placeholder-val="{{ false }}"><p style="margin-top:4px;font-size:12px;color:#e11d1d;">{{ kb.m_addr }}</p></sc-if>
+              </div>
+              </sc-if>
+              <div>
+                <input value="{{ kb.num }}" onChange="{{ kb.set_num }}" type="text" placeholder="Broj kuće" style="width:100%;padding:11px 13px;border-radius:10px;font-size:15px;font-family:inherit;color:#1f2937;background:#ffffff;border:1px solid {{ kb.b_num }};">
+                <sc-if value="{{ kb.e_num }}" hint-placeholder-val="{{ false }}"><p style="margin-top:4px;font-size:12px;color:#e11d1d;">{{ kb.m_num }}</p></sc-if>
+              </div>
+            </div>
+            <sc-if value="{{ kbIsM6 }}" hint-placeholder-val="{{ false }}">
+              <input value="{{ kbFam }}" onChange="{{ kbSetFam }}" type="text" maxlength="40" placeholder="Natpis gore levo (npr. Porodica Petrović)" style="width:100%;padding:11px 13px;border-radius:10px;font-size:15px;font-family:inherit;color:#1f2937;background:#ffffff;border:1px solid rgba(31,41,55,0.18);">
+            </sc-if>
+            </sc-if>
+            <sc-if value="{{ kbFlat }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;flex-direction:column;gap:12px;">
+                <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#4b5563;">Šta želite na pločici</div>
+                <div class="fg-flat-row" style="display:grid;grid-template-columns:2fr 1fr;gap:10px;align-items:start;">
+                <div>
+                  <label style="display:flex;align-items:center;gap:10px;cursor:pointer;font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;color:#1f2937;user-select:none;">
+                    <input type="checkbox" checked="{{ kbUseP }}" onChange="{{ kbToggleP }}" style="width:18px;height:18px;accent-color:#ff3737;cursor:pointer;">Prezime
+                  </label>
+                  <sc-if value="{{ kbUseP }}" hint-placeholder-val="{{ false }}">
+                    <input value="{{ kb.addr }}" onChange="{{ kb.set_addr }}" type="text" placeholder="Upišite prezime" style="margin-top:8px;width:100%;padding:11px 13px;border-radius:10px;font-size:15px;font-family:inherit;color:#1f2937;background:#ffffff;border:1px solid {{ kb.b_addr }};">
+                    <sc-if value="{{ kb.e_addr }}" hint-placeholder-val="{{ false }}"><p style="margin-top:4px;font-size:12px;color:#e11d1d;">{{ kb.m_addr }}</p></sc-if>
+                  </sc-if>
+                </div>
+                <div>
+                  <label style="display:flex;align-items:center;gap:10px;cursor:pointer;font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;color:#1f2937;user-select:none;">
+                    <input type="checkbox" checked="{{ kbUseB }}" onChange="{{ kbToggleB }}" style="width:18px;height:18px;accent-color:#ff3737;cursor:pointer;">Broj
+                  </label>
+                  <sc-if value="{{ kbUseB }}" hint-placeholder-val="{{ false }}">
+                    <input value="{{ kb.num }}" onChange="{{ kb.set_num }}" type="text" inputmode="numeric" placeholder="Upišite broj stana" style="margin-top:8px;width:100%;padding:11px 13px;border-radius:10px;font-size:15px;font-family:inherit;color:#1f2937;background:#ffffff;border:1px solid {{ kb.b_num }};">
+                    <sc-if value="{{ kb.e_num }}" hint-placeholder-val="{{ false }}"><p style="margin-top:4px;font-size:12px;color:#e11d1d;">{{ kb.m_num }}</p></sc-if>
+                  </sc-if>
+                </div>
+                </div>
+                <sc-if value="{{ kbPickErr }}" hint-placeholder-val="{{ false }}"><p style="font-size:12px;color:#e11d1d;">Izaberite prezime, broj ili oba.</p></sc-if>
+              </div>
+            </sc-if>
+            <sc-if value="{{ kbHasModel }}" hint-placeholder-val="{{ false }}">
+            <div>
+              <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#4b5563;margin-bottom:8px;">Veličina</div>
+              <sc-if value="{{ kbShowShapeTabs }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;gap:4px;padding:4px;background:#f3f4f6;border-radius:10px;margin-bottom:10px;">
+                <button onClick="{{ kbShapeRect }}" style="flex:1;padding:9px 12px;border:none;border-radius:8px;background:{{ kbTabRect }};color:{{ kbTabRectTxt }};font-family:'Montserrat',sans-serif;font-weight:700;font-size:12px;letter-spacing:0.04em;text-transform:uppercase;cursor:pointer;transition:background 0.2s,color 0.2s;">Pravougaoni</button>
+                <button onClick="{{ kbShapeSq }}" style="flex:1;padding:9px 12px;border:none;border-radius:8px;background:{{ kbTabSq }};color:{{ kbTabSqTxt }};font-family:'Montserrat',sans-serif;font-weight:700;font-size:12px;letter-spacing:0.04em;text-transform:uppercase;cursor:pointer;transition:background 0.2s,color 0.2s;">Kockasti</button>
+              </div>
+              </sc-if>
+              <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;">
+                <sc-for list="{{ kbSizes }}" as="z" hint-placeholder-count="5">
+                  <button onClick="{{ z.pick }}" style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;border:1px solid {{ z.border }};background:{{ z.bg }};cursor:pointer;text-align:left;transition:border-color 0.2s,background 0.2s;">
+                    <span style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;color:#1f2937;white-space:nowrap;">{{ z.label }}</span>
+                    <span style="font-size:12px;font-weight:600;color:#ff3737;white-space:nowrap;">{{ z.price }}</span>
+                  </button>
+                </sc-for>
+              </div>
+              <sc-if value="{{ kbSizeErr }}" hint-placeholder-val="{{ false }}"><p style="margin-top:6px;font-size:12px;color:#e11d1d;">Niste izabrali veličinu.</p></sc-if>
+            </div>
+            </sc-if>
+            <div>
+              <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#4b5563;margin-bottom:8px;">Boja table</div>
+              <div style="display:flex;flex-wrap:wrap;gap:8px;">
+                <sc-for list="{{ kbBgColors }}" as="c" hint-placeholder-count="11">
+                  <button onClick="{{ c.pick }}" aria-label="{{ c.name }}" title="{{ c.name }}" style="width:30px;height:30px;border-radius:50%;background:{{ c.hex }};border:2px solid #ffffff;box-shadow:{{ c.ring }};cursor:pointer;padding:0;transition:transform 0.15s;" style-hover="transform:scale(1.12);"></button>
+                </sc-for>
+              </div>
+            </div>
+            <div>
+              <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#4b5563;margin-bottom:8px;">Boja teksta</div>
+              <div style="display:flex;flex-wrap:wrap;gap:8px;">
+                <sc-for list="{{ kbTxtColors }}" as="c" hint-placeholder-count="11">
+                  <button onClick="{{ c.pick }}" aria-label="{{ c.name }}" title="{{ c.name }}" style="width:30px;height:30px;border-radius:50%;background:{{ c.hex }};border:2px solid #ffffff;box-shadow:{{ c.ring }};cursor:pointer;padding:0;transition:transform 0.15s;" style-hover="transform:scale(1.12);"></button>
+                </sc-for>
+              </div>
+            </div>
+            <sc-if value="{{ kbHouse }}" hint-placeholder-val="{{ true }}">
+            <div>
+              <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#4b5563;margin-bottom:8px;">Distanceri</div>
+              <div style="display:flex;flex-wrap:wrap;gap:8px;">
+                <sc-for list="{{ kbSpColors }}" as="c" hint-placeholder-count="3">
+                  <button onClick="{{ c.pick }}" aria-label="{{ c.name }}" title="{{ c.name }}" style="width:30px;height:30px;border-radius:50%;background:{{ c.hex }};border:2px solid #ffffff;box-shadow:{{ c.ring }};cursor:pointer;padding:0;transition:transform 0.15s;" style-hover="transform:scale(1.12);"></button>
+                </sc-for>
+              </div>
+            </div>
+            </sc-if>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:12px;padding-top:24px;">
+          <sc-if value="{{ formAdded }}" hint-placeholder-val="{{ false }}">
+            <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:12px;padding:12px 16px;text-align:center;">
+              <strong style="font-family:'Space Grotesk',sans-serif;font-size:15px;color:#166534;">Vaš broj je dodat u korpu.</strong>
+              <span style="display:block;margin-top:4px;font-size:13px;color:#166534;">U korpi unesite željenu količinu. <a href="Korpa.dc.html" style="color:#166534;text-decoration:underline;font-weight:600;">Idi u korpu →</a></span>
+            </div>
+          </sc-if>
+          <button onClick="{{ orderNumber }}" style="background:#ff3737;color:#ffffff;border:1px solid #ff3737;font-family:'Montserrat',sans-serif;font-weight:700;font-size:14px;letter-spacing:0.06em;text-transform:uppercase;padding:15px 44px;border-radius:20px;cursor:pointer;transition:background 0.22s,color 0.22s,transform 0.22s,box-shadow 0.22s;" style-hover="background:#ffffff;color:#ff3737;transform:translateY(-2px);box-shadow:0 8px 18px rgba(255,55,55,0.3);">Poruči</button>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <footer style="border-top:1px solid rgba(31,41,55,0.1);">
+    <div class="fg-foot-bar" style="max-width:1240px;margin:0 auto;padding:48px 32px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;">
+      <div class="fg-foot-left" style="display:flex;align-items:center;gap:14px;">
+        <button class="fg-fburger" onClick="{{ toggleFMenu }}" aria-label="Meni"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 7h16M4 12h16M4 17h16" stroke="#4b5563" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <a href="Fiber Graphics.dc.html#top" aria-label="Početna" style="display:flex;align-items:center;"><img fetchpriority="high" class="fg-logo-big" src="assets/logo.svg" alt="Fiber Graphics" style="height:37px;width:auto;display:block;"><img fetchpriority="high" class="fg-logo-mali" src="assets/logo-mali.webp" alt="Fiber Graphics" style="height:36px;width:auto;border-radius:8px;display:none;"></a>
+      </div>
+      <div class="fg-fmenu {{ footerMenuClass }}">
+      <div class="fg-fnav" style="display:flex;gap:40px;flex-wrap:wrap;font-family:'Montserrat',sans-serif;font-weight:700;font-size:17px;letter-spacing:0.08em;text-transform:uppercase;">
+        <a href="Fiber Graphics.dc.html" style="color:#4b5563;transition:color 0.3s ease,transform 0.3s ease;" style-hover="color:#ff3737;transform:translateY(-2px);">Početna</a>
+        <a href="Fiber Graphics.dc.html#usluge" style="color:#4b5563;transition:color 0.3s ease,transform 0.3s ease;" style-hover="color:#ff3737;transform:translateY(-2px);">Usluge</a>
+        <a href="Galerija.dc.html" style="color:#4b5563;transition:color 0.3s ease,transform 0.3s ease;" style-hover="color:#ff3737;transform:translateY(-2px);">Galerija</a>
+        <a href="#kontakt" style="color:#4b5563;transition:color 0.3s ease,transform 0.3s ease;" style-hover="color:#ff3737;transform:translateY(-2px);">Kontakt</a>
+      </div>
+      <div class="fg-fsocial" style="display:flex;gap:18px;align-items:center;">
+        <a href="https://www.instagram.com/fiber.graphics/" target="_blank" rel="noopener" aria-label="Instagram" style="color:#4b5563;display:flex;transition:color 0.3s ease,transform 0.3s ease;" style-hover="color:#ff3737;transform:translateY(-3px) scale(1.12);"><svg width="25" height="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg></a>
+        <a href="https://www.facebook.com/profile.php?id=61573630137463" target="_blank" rel="noopener" aria-label="Facebook" style="color:#4b5563;display:flex;transition:color 0.3s ease,transform 0.3s ease;" style-hover="color:#ff3737;transform:translateY(-3px) scale(1.12);"><svg width="25" height="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 8.5V6.8c0-.8.3-1.3 1.4-1.3H17V2.6c-.5-.1-1.4-.2-2.4-.2-2.4 0-3.9 1.4-3.9 4v2.1H8.2V12h2.5v9.4h3.3V12h2.5l.4-3.5H14z" fill="currentColor"/></svg></a>
+        <a href="#" aria-label="TikTok" style="color:#4b5563;display:flex;transition:color 0.3s ease,transform 0.3s ease;" style-hover="color:#ff3737;transform:translateY(-3px) scale(1.12);"><svg width="25" height="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 3c.3 2.2 1.6 3.7 3.8 3.9v2.5c-1.3.1-2.5-.3-3.8-1.1v5.6c0 3.5-2.6 5.6-5.6 5.1-2.5-.4-4-2.3-4-4.8 0-2.9 2.6-4.9 5.5-4.4v2.7c-.4-.1-.8-.2-1.2-.2-1.2 0-2 .8-2 1.9 0 1.2.9 2 2 2s1.9-.8 1.9-2.1V3H15z" fill="currentColor"/></svg></a>
+        <a href="#" aria-label="LinkedIn" style="color:#4b5563;display:flex;transition:color 0.3s ease,transform 0.3s ease;" style-hover="color:#ff3737;transform:translateY(-3px) scale(1.12);"><svg width="25" height="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="2"/><path d="M7 10v7M7 7.5v.01M11 17v-4c0-1.1.9-2 2-2s2 .9 2 2v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
+      </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(31,41,55,0.08);">
+      <div style="max-width:1240px;margin:0 auto;padding:22px 32px;font-family:'JetBrains Mono',monospace;font-size:14px;color:#6b7280;text-align:center;">© 2026 Fiber Graphics DOO. Sva prava zadržana.</div>
+    </div>
+  </footer>
+</div>
+
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#ff3737"/><text x="50" y="63" font-family="sans-serif" font-size="34" font-weight="700" fill="#fff" text-anchor="middle">FG</text></svg></template></x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  plateSvg(id, T, X, D, uNum, uStreet, uFam, useP, useB) {
+    const MIR = { "#F1F4F7": 1, "#D5B16C": 1, "#4C4C4C": 1 };
+    const esc = v => String(v).replace(/&/g, "&amp;").replace(/</g, "&lt;");
+    const g = c => MIR[c] ? "kbv-sh" : "kbv-mt";
+    const P = (d, c) => '<path d="' + d + '" fill="' + c + '"/><path d="' + d + '" fill="url(#' + g(c) + ')"/>';
+    const Rc = (x, y, w, h) => "M" + x + " " + y + "h" + w + "v" + h + "h" + (-w) + "Z";
+    const fit = (str, base, maxW) => Math.min(base, maxW / (Math.max(1, String(str).length) * 0.74));
+    const Tx = (x, y, size, anchor, c, str) => { const a = '<text x="' + x + '" y="' + y + '" font-size="' + size.toFixed(1) + '" text-anchor="' + anchor + '" font-family="Montserrat,Arial,sans-serif" font-weight="700" letter-spacing="1"'; return a + ' fill="' + c + '">' + esc(str) + '</text>' + (MIR[c] ? a + ' fill="url(#kbv-sh)">' + esc(str) + '</text>' : ""); };
+    const Dot = (x, y) => '<circle cx="' + x + '" cy="' + y + '" r="7" fill="' + D + '" stroke="rgba(0,0,0,0.35)" stroke-width="1"/><circle cx="' + (x - 2) + '" cy="' + (y - 2) + '" r="2.4" fill="#fff" opacity="0.55"/>';
+    const DEF = { 1: ["43", ""], 2: ["174", "ТАНАСКА РАЈИЋА"], 3: ["52", "ВОЈВОДЕ СТЕПЕ"], 4: ["4", "СВЕТОГ|ЈОАНИКИЈА"], 5: ["42", "ПЕТРОВИЋ"], 6: ["2", "КАЧЕРСКА"], 7: ["53", "КОСОВСКА"], 8: ["53А", "КОСОВСКА"] }[id];
+    const N = uNum || DEF[0], S = (uStreet ? uStreet.toUpperCase() : DEF[1]);
+    let b = "";
+    const RR = (x, y, w, h, r) => "M" + (x + r) + " " + y + "h" + (w - 2 * r) + "a" + r + " " + r + " 0 0 1 " + r + " " + r + "v" + (h - 2 * r) + "a" + r + " " + r + " 0 0 1 " + (-r) + " " + r + "h" + (2 * r - w) + "a" + r + " " + r + " 0 0 1 " + (-r) + " " + (-r) + "v" + (2 * r - h) + "a" + r + " " + r + " 0 0 1 " + r + " " + (-r) + "Z";
+    const EL = (cx, cy, rx, ry) => "M" + (cx - rx) + " " + cy + "a" + rx + " " + ry + " 0 1 0 " + (2 * rx) + " 0a" + rx + " " + ry + " 0 1 0 " + (-2 * rx) + " 0Z";
+    const OL = (d, w) => '<path d="' + d + '" fill="none" stroke="' + X + '" stroke-width="' + w + '"/>';
+    const TxN = (x, y, size, anchor, c, str) => Tx(x, y, size, anchor, c, str).replace(/font-weight="700" letter-spacing="1"/g, 'font-weight="600" letter-spacing="0"');
+    if (id > 8) {
+      const FD = { 9: ["53", "Димитријевић"], 10: ["4", "Ђукић"], 11: ["9", "Петровић"], 12: ["10", "Катанић"], 13: ["", "Милојевић"], 14: ["", "Петровић"], 15: ["12", ""], 16: ["9", ""] }[id];
+      const sn = useP === false ? "" : (uStreet || FD[1]), nm = useB === false ? "" : (uNum || FD[0]);
+      const one = sn || nm;
+      if (id === 9) b = P(RR(90, 175, 420, 100, 10), T) + (nm ? P(EL(300, 172, 50, 50), X) + '<circle cx="300" cy="172" r="50" fill="none" stroke="' + T + '" stroke-width="5"/>' + Tx(300, 192, fit(nm, 56, 80), "middle", T, nm) : "") + TxN(300, 248, fit(sn, 46, 380), "middle", X, sn);
+      else if (id === 10) b = P(RR(70, 170, 390, 70, 35), T) + OL(RR(78, 178, 374, 54, 27), 2) + (nm ? P(EL(470, 205, 54, 54), X) + '<circle cx="470" cy="205" r="54" fill="none" stroke="' + T + '" stroke-width="5"/>' + Tx(470, 224, fit(nm, 54, 80), "middle", T, nm) : "") + TxN(260, 219, fit(sn, 38, 300), "middle", X, sn);
+      else if (id === 11) b = P(Rc(80, 145, 440, 115), T) + (nm && sn ? Tx(150, 228, fit(nm, 80, 110), "middle", X, nm) + P(Rc(208, 165, 6, 75), X) + Tx(236, 222, fit(sn, 44, 270), "start", X, sn) : Tx(300, 225, fit(one, 60, 400), "middle", X, one));
+      else if (id === 12) b = P(RR(70, 150, 460, 110, 18), T) + OL(RR(78, 158, 444, 94, 13), 2) + (nm ? P(RR(86, 164, 120, 82, 10), X) + Tx(146, 225, fit(nm, 58, 100), "middle", T, nm) : "") + TxN(nm ? 368 : 300, 222, fit(sn, 44, nm ? 300 : 420), "middle", X, sn);
+      else if (id === 13) b = P(RR(70, 155, 460, 100, 50), T) + OL(RR(82, 167, 436, 76, 38), 3) + TxN(300, 220, fit(one, 46, 380), "middle", X, one);
+      else if (id === 14) b = P(Rc(100, 150, 400, 110), T) + Tx(300, 223, fit(one, 52, 360), "middle", X, one);
+      else if (id === 15) b = P(RR(190, 70, 220, 260, 14), T) + OL(RR(208, 88, 184, 224, 12), 5) + Tx(300, 244, fit(one, 120, 170), "middle", X, one);
+      else if (id === 16) b = P(EL(300, 200, 210, 130), T) + OL(EL(300, 200, 188, 110), 4) + Tx(300, 252, fit(one, 150, 300), "middle", X, one);
+    }
+    else if (id === 1) { b = P(Rc(225, 55, 175, 290), X) + P(Rc(190, 85, 190, 230), T) + Tx(285, 255, fit(N, 150, 170), "middle", X, N) + Dot(312, 70) + Dot(312, 330); }
+    else if (id === 2) { b = P(Rc(150, 55, 400, 255), X) + P(Rc(40, 80, 480, 200), T) + Tx(500, 205, fit(N, 130, 300), "end", X, N) + P(Rc(62, 220, 438, 6), X) + Tx(62, 265, fit(S, 40, 438), "start", X, S) + Dot(345, 68) + Dot(345, 296); }
+    else if (id === 3) { b = P(Rc(200, 45, 330, 295), X) + P(Rc(90, 85, 400, 215), T) + Tx(470, 222, fit(N, 140, 260), "end", X, N) + P(Rc(108, 236, 362, 6), X) + Tx(108, 282, fit(S, 38, 362), "start", X, S) + Dot(365, 58) + Dot(365, 326); }
+    else if (id === 4) { const L = S.split("|"); b = P(Rc(70, 115, 440, 165), T) + P(Rc(320, 85, 150, 225), X) + (L.length > 1 ? Tx(195, 188, fit(L[0], 34, 220), "middle", X, L[0]) + Tx(195, 228, fit(L[1], 34, 220), "middle", X, L[1]) : Tx(195, 210, fit(L[0], 34, 220), "middle", X, L[0])) + Tx(395, 250, fit(N, 140, 130), "middle", T, N) + Dot(88, 197) + Dot(490, 197); }
+    else if (id === 5) { b = P(Rc(160, 30, 280, 330), T) + Tx(300, 220, fit(N, 170, 240), "middle", X, N) + P(Rc(185, 240, 230, 6), X) + Tx(300, 300, fit(S, 40, 240), "middle", X, S) + Dot(176, 195) + Dot(424, 195); }
+    else if (id === 6) { b = P(Rc(50, 60, 500, 250), T) + (() => { const fw = (uFam || "ПОРОДИЦА ЂОСИЋ").toUpperCase().trim().split(/\s+/); const l1 = fw.length > 1 ? fw.slice(0, Math.ceil(fw.length / 2)).join(" ") : fw[0], l2 = fw.length > 1 ? fw.slice(Math.ceil(fw.length / 2)).join(" ") : ""; return Tx(85, l2 ? 115 : 135, fit(l1, 34, 300), "start", X, l1) + (l2 ? Tx(85, 155, fit(l2, 34, 300), "start", X, l2) : ""); })() + Tx(515, 228, fit(N, 150, 200), "end", X, N) + P(Rc(85, 245, 430, 6), X) + Tx(300, 292, fit(S, 42, 430), "middle", X, S) + Dot(68, 185) + Dot(532, 185); }
+    else if (id === 7) { b = P(Rc(40, 60, 520, 285), X) + P("M40 190L560 72V328H40Z", T) + P("M40 190L300 131L560 72V96L40 214Z", "rgba(255,255,255,0.18)") + Tx(58, 310, fit(S, 40, 270), "start", X, S) + Tx(548, 312, fit(N, 150, 230), "end", X, N) + Dot(58, 230) + Dot(542, 230); }
+    else if (id === 8) { b = P(Rc(110, 55, 420, 210), T) + Tx(325, 222, fit(N, 150, 340), "middle", X, N) + P(Rc(60, 252, 490, 70), X) + Tx(305, 303, fit(S, 50, 450), "middle", T, S) + Dot(130, 160) + Dot(510, 160); }
+    return '<svg viewBox="0 0 600 400" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" style="display:block">' +
+      '<defs><filter id="kbv-n" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="4"/><feColorMatrix type="saturate" values="0"/></filter>' +
+      '<filter id="kbv-ds" x="-15%" y="-15%" width="140%" height="145%"><feDropShadow dx="5" dy="9" stdDeviation="7" flood-color="#000" flood-opacity="0.38"/></filter>' +
+      '<linearGradient id="kbv-sh" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0.55"/><stop offset="0.3" stop-color="#fff" stop-opacity="0.08"/><stop offset="0.5" stop-color="#000" stop-opacity="0.14"/><stop offset="0.72" stop-color="#fff" stop-opacity="0.32"/><stop offset="1" stop-color="#000" stop-opacity="0.22"/></linearGradient>' +
+      '<linearGradient id="kbv-mt" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0.1"/><stop offset="1" stop-color="#000" stop-opacity="0.08"/></linearGradient></defs>' +
+      (id > 8 && !({ 11: 1, 12: 1, 15: 1 })[id] ? '<filter id="kbv-wd" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.004 0.32" numOctaves="2" seed="7"/><feColorMatrix type="saturate" values="0"/></filter><rect width="600" height="400" fill="#5b3721"/><rect width="600" height="400" filter="url(#kbv-wd)" opacity="0.45" style="mix-blend-mode:multiply"/>' : id > 8 ? '<rect width="600" height="400" fill="#4b4c4f"/><rect width="600" height="400" filter="url(#kbv-n)" opacity="0.25" style="mix-blend-mode:multiply"/>' : '<rect width="600" height="400" fill="#bfa996"/><rect width="600" height="400" filter="url(#kbv-n)" opacity="0.32" style="mix-blend-mode:multiply"/>') +
+      '<g filter="url(#kbv-ds)">' + b + '</g></svg>';
+  }
+  state = { cartCount: 0, svcOpen: false, menuOpen: false, footerMenuOpen: false, loading: true, formOpen: false, formAdded: false, kbModel: 0, kbSet: 0, kbF: { addr: "", num: "" }, kbShape: "rect", kbSize: "", kbUseP: true, kbUseB: true, kbBg: "#F1F4F7", kbTxt: "#030303", kbSp: "#AFB5BD", kbFam: "", kbRecolor: "", kbTried: false, kbBad: {} };
+  componentDidMount() {
+    this._syncCart = () => { try { const c = JSON.parse(localStorage.getItem("fg-cart") || "[]"); this.setState({ cartCount: Array.isArray(c) ? c.length : 0 }); } catch (e) {} };
+    this._syncCart(); window.addEventListener("storage", this._syncCart); window.addEventListener("fg-cart-change", this._syncCart);
+    this._loadT = setTimeout(() => this.setState({ loading: false }), 2400);
+    this._revealT = setTimeout(() => {
+      const secs = Array.from(document.querySelectorAll('section, footer')).filter(el => !(el.id || '').startsWith('hero'));
+      if (!secs.length || !('IntersectionObserver' in window)) return;
+      secs.forEach(el => el.classList.add('fg-reveal'));
+      this._revealIo = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('fg-in'); else e.target.classList.remove('fg-in'); });
+      }, { threshold: 0.12 });
+      secs.forEach(el => this._revealIo.observe(el));
+    }, 100);
+    const el = document.getElementById('hero-broj');
+    if (!el || !('IntersectionObserver' in window)) { if (el) el.classList.add('fg-hero-in'); return; }
+    this._heroIo = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('fg-hero-in');
+        else e.target.classList.remove('fg-hero-in');
+      });
+    }, { threshold: 0.2 });
+    this._heroIo.observe(el);
+  }
+  componentDidUpdate() {}
+  componentWillUnmount() { clearTimeout(this._revealT); clearTimeout(this._loadT); if (this._revealIo) this._revealIo.disconnect(); if (this._heroIo) this._heroIo.disconnect(); }
+  renderVals() {
+    const s = this.state;
+    const F = s.kbF, NAME = /^[A-Za-zČčĆćŽžŠšĐđ]{2,}(\s+[A-Za-zČčĆćŽžŠšĐđ]{2,})*$/, MAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    const kbFlatMode = s.kbModel ? s.kbModel > 8 : s.kbSet === 1;
+    const LET = /^[A-Za-zČčĆćŽžŠšĐđ]{2,}(\s+[A-Za-zČčĆćŽžŠšĐđ]{2,})*$/;
+    const ok = kbFlatMode
+      ? { addr: !s.kbUseP || LET.test(F.addr.trim()), num: !s.kbUseB || F.num.trim().length >= 1 }
+      : { addr: s.kbModel === 1 || F.addr.trim().length >= 2, num: F.num.trim().length >= 1 };
+    const kbLabel = id => id <= 8 ? "Kućni broj — Model " + id : "Pločica za stan — Model " + (id - 8);
+    const kbImg = id => id <= 8 ? "assets/model-" + id + ".webp" : "assets/stan-" + (id - 8) + ".webp";
+    const KB_SIZES = { flat: [["10×3 cm",400],["12×3 cm",450],["15×4 cm",500]], rect: [["30×15 cm",2100],["35×17,5 cm",2400],["40×20 cm",3000],["50×25 cm",4100],["60×30 cm",6000]], sq: [["20×20 cm",1800],["25×25 cm",2400],["30×30 cm",3100],["40×40 cm",5100],["50×50 cm",7900]] };
+    const KB_COLS = [["Crna","#030303"],["Tamnoplava","#002D83"],["Teget","#111934"],["Bela","#F8F8F5"],["Siva","#808080"],["Tamnosiva","#383E42"],["Tamnosmeđa","#2B1611"],["Srebrno ogledalo","#F1F4F7"],["Zlatna","#D5B16C"],["Tamno ogledalo","#4C4C4C"],["Crvena","#951218"]];
+    const fmtRsd = n => n.toLocaleString("sr-RS").replace(/,/g, ".") + " RSD";
+    const kbSizeKey = kbFlatMode ? "flat" : s.kbShape;
+    const kbSel = (KB_SIZES[kbSizeKey] || []).find(x => x[0] === s.kbSize);
+    const kbValid = !!kbSel && !!s.kbModel && (!kbFlatMode || s.kbUseP || s.kbUseB) && Object.values(ok).every(Boolean);
+    const msgBad = { name: "Unesite važeće ime (samo slova).", email: "Unesite važeću e-mail adresu.", phone: "Unesite važeći broj telefona (samo brojevi).", addr: "Niste uneli ovaj podatak.", num: "Niste uneli ovaj podatak." };
+    const kb = {};
+    for (const k of Object.keys(F)) {
+      kb[k] = F[k];
+      const empty = !F[k].trim() && !s.kbBad[k];
+      const err = (s.kbTried && !ok[k]) || !!s.kbBad[k];
+      kb["e_" + k] = err;
+      kb["m_" + k] = empty ? "Niste uneli ovaj podatak." : (kbFlatMode && k === "addr" ? "Unesite važeće prezime (samo slova)." : msgBad[k]);
+      kb["b_" + k] = err ? "#e11d1d" : "rgba(31,41,55,0.18)";
+      kb["set_" + k] = e => {
+        const v = e.target.value;
+        const bad = (k === "addr" && kbFlatMode && /[^A-Za-zČčĆćŽžŠšĐđ\s]/.test(v)) || (k === "name" && /[^A-Za-zČčĆćŽžŠšĐđ\s]/.test(v)) || (k === "phone" && /[^0-9]/.test(v));
+        this.setState(st => ({ kbF: { ...st.kbF, [k]: bad ? "" : v }, kbBad: { ...st.kbBad, [k]: bad }, formAdded: false }));
+      };
+    }
+    return {
+      kb,
+      kbBgCol: s.kbBg, kbTxtCol: s.kbTxt,
+      kbPrevNum: F.num.trim() || "53",
+      kbPrevStreet: F.addr.trim() || "Kosovska",
+      kbBgColors: KB_COLS.map(([name, hex]) => ({ name, hex, ring: s.kbBg === hex ? "0 0 0 2px #ff3737" : "0 0 0 1px rgba(31,41,55,0.25)", pick: () => this.setState({ kbBg: hex, formAdded: false }) })),
+      kbTxtColors: KB_COLS.map(([name, hex]) => ({ name, hex, ring: s.kbTxt === hex ? "0 0 0 2px #ff3737" : "0 0 0 1px rgba(31,41,55,0.25)", pick: () => this.setState({ kbTxt: hex, formAdded: false }) })),
+      kbSpColors: [["Srebrna","#AFB5BD"],["Zlatna","#CAA341"],["Crna","#030303"]].map(([name, hex]) => ({ name, hex, ring: s.kbSp === hex ? "0 0 0 2px #ff3737" : "0 0 0 1px rgba(31,41,55,0.25)", pick: () => this.setState({ kbSp: hex, formAdded: false }) })),
+      kbHasPhoto: !!s.kbModel && !!kbImg(s.kbModel),
+      kbPreviewImg: (s.kbModel >= 1 && s.kbModel <= 8)
+        ? React.createElement("div", { style: { position: "absolute", inset: 0 }, dangerouslySetInnerHTML: { __html: this.plateSvg(s.kbModel, s.kbBg, s.kbTxt, s.kbSp || "#AFB5BD", F.num.trim(), s.kbModel === 1 ? "" : F.addr.trim(), (s.kbFam || "").trim(), s.kbUseP, s.kbUseB) } })
+        : React.createElement("img", { src: (s.kbModel && kbImg(s.kbModel)) || "assets/model-1.webp", alt: s.kbModel ? kbLabel(s.kbModel) : "", style: { position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", display: "block" } }),
+      kbTabRect: s.kbShape === "rect" ? "#ffffff" : "transparent", kbTabRectTxt: s.kbShape === "rect" ? "#1f2937" : "#6b7280",
+      kbTabSq: s.kbShape === "sq" ? "#ffffff" : "transparent", kbTabSqTxt: s.kbShape === "sq" ? "#1f2937" : "#6b7280",
+      kbShapeRect: () => this.setState({ kbShape: "rect", kbSize: "", kbUseP: true, kbUseB: true, formAdded: false }),
+      kbShapeSq: () => this.setState({ kbShape: "sq", kbSize: "", formAdded: false }),
+      kbHouse: !kbFlatMode, kbFlat: kbFlatMode, kbIsM6: s.kbModel === 6, kbFam: s.kbFam || "", kbSetFam: e => this.setState({ kbFam: e.target.value, formAdded: false }), kbShowShapeTabs: !kbFlatMode && !s.kbModel,
+      kbUseP: s.kbUseP, kbUseB: s.kbUseB,
+      kbToggleP: () => this.setState(st => ({ kbUseP: !st.kbUseP, formAdded: false })),
+      kbToggleB: () => this.setState(st => ({ kbUseB: !st.kbUseB, formAdded: false })),
+      kbPickErr: s.kbTried && kbFlatMode && !s.kbUseP && !s.kbUseB,
+      kbSizes: KB_SIZES[kbSizeKey].map(([label, p]) => ({ label, price: fmtRsd(p), border: s.kbSize === label ? "#ff3737" : "rgba(31,41,55,0.16)", bg: s.kbSize === label ? "rgba(255,55,55,0.06)" : "#ffffff", pick: () => this.setState({ kbSize: label, formAdded: false }) })),
+      kbSizeErr: s.kbTried && !kbSel,
+      kbNeedStreet: s.kbModel !== 1, kbAddrCols: s.kbModel === 1 ? "1fr" : "2fr 1fr",
+      kbHasModel: !!s.kbModel, kbNoModel: !s.kbModel || !kbImg(s.kbModel),
+      kbPreviewText: !s.kbModel ? "Izaberite model sa leve strane" : kbLabel(s.kbModel) + " (slika uskoro)",
+      kbSetLabel: s.kbSet === 0 ? "Kuće · 1/2" : "Stanovi, zgrade i apartmani · 2/2",
+      kbPrevSet: () => this.setState(st => ({ kbSet: (st.kbSet + 1) % 2 })),
+      kbNextSet: () => this.setState(st => ({ kbSet: (st.kbSet + 1) % 2 })),
+      kbModelBg: s.kbModel && kbImg(s.kbModel) ? "url(" + kbImg(s.kbModel) + ")" : "none",
+      kbModelLabel: s.kbModel ? "Model " + (s.kbModel > 8 ? s.kbModel - 8 : s.kbModel) : "",
+      kbModelErr: s.kbTried && !s.kbModel,
+      formOpen: s.formOpen,
+      openForm: e => { if (e) e.preventDefault(); this.setState({ formOpen: true, formAdded: false }); },
+      formAdded: s.formAdded,
+      modelHint: s.kbModel ? "Izabran: " + kbLabel(s.kbModel) : "Kliknite na model koji vam se dopada.",
+      kbModels: [1,2,3,4,5,6,7,8].map(n => s.kbSet * 8 + n).map((i, n) => ({
+        bg: kbImg(i) ? "url(" + kbImg(i) + ")" : "none", ph: kbImg(i) ? "none" : "flex", label: "Model " + (n + 1), num: String(n + 1),
+        border: s.kbModel === i ? "#ff3737" : "transparent",
+        shadow: s.kbModel === i ? "0 8px 20px rgba(255,55,55,0.25)" : "none",
+        check: s.kbModel === i ? "flex" : "none",
+        pick: () => this.setState(st => { const shape = (i === 1 || i === 5) ? "sq" : "rect"; const keep = st.kbModel && (st.kbModel > 8) === (i > 8) && (i > 8 || shape === st.kbShape); return { kbModel: i, formAdded: false, kbRecolor: "", kbShape: i <= 8 ? shape : st.kbShape, kbSize: keep ? st.kbSize : "" }; }),
+      })),
+      orderNumber: () => {
+        if (!kbValid) { this.setState({ kbTried: true, formAdded: false }); return; }
+        try {
+          const cart = JSON.parse(localStorage.getItem("fg-cart") || "[]");
+          const mi = this.state.kbModel || 1;
+          const cn = h => (KB_COLS.find(c => c[1] === h) || [h])[0];
+          const f = this.state.kbF;
+          cart.push({ id: "broj-" + Date.now(), title: kbLabel(mi) + " (po meri)", note: (mi > 8 ? [this.state.kbUseP ? "Prezime: " + f.addr.trim() : "", this.state.kbUseB ? "Broj: " + f.num.trim() : ""].filter(Boolean).join(" · ") + " · " + this.state.kbSize : (mi === 1 ? "Broj " : f.addr.trim() + " ") + f.num.trim() + " · " + (this.state.kbShape === "sq" ? "Kockasti" : "Pravougaoni") + " " + this.state.kbSize) + (mi === 6 && (this.state.kbFam || "").trim() ? " · Natpis: " + (this.state.kbFam || "").trim() : "") + " · Tabla: " + cn(this.state.kbBg) + " · Tekst: " + cn(this.state.kbTxt) + (mi <= 8 ? " · Distanceri: " + ({ "#AFB5BD": "Srebrna", "#CAA341": "Zlatna", "#030303": "Crna" })[this.state.kbSp] : ""), img: mi > 8 ? (kbImg(mi) || "assets/brojevi-za-kuce.webp") : "data:image/svg+xml;charset=utf-8," + encodeURIComponent(this.plateSvg(mi, this.state.kbBg, this.state.kbTxt, this.state.kbSp, f.num.trim(), mi === 1 ? "" : f.addr.trim(), (this.state.kbFam || "").trim(), this.state.kbUseP, this.state.kbUseB)), price: (({ flat: { "10×3 cm":400,"12×3 cm":450,"15×4 cm":500 }, rect: { "30×15 cm":2100,"35×17,5 cm":2400,"40×20 cm":3000,"50×25 cm":4100,"60×30 cm":6000 }, sq: { "20×20 cm":1800,"25×25 cm":2400,"30×30 cm":3100,"40×40 cm":5100,"50×50 cm":7900 } })[mi > 8 ? "flat" : this.state.kbShape] || {})[this.state.kbSize] || 0, qty: 1 });
+          localStorage.setItem("fg-cart", JSON.stringify(cart)); window.dispatchEvent(new Event("fg-cart-change"));
+          this.setState({ formAdded: true, cartCount: cart.length });
+        } catch (e) {}
+      },
+      closeForm: () => this.setState({ formOpen: false }),
+      stopForm: e => e.stopPropagation(),
+      loaderOpacity: s.loading ? 1 : 0,
+      loaderPointer: s.loading ? "auto" : "none",
+      cartCount: s.cartCount, hasCartCount: s.cartCount > 0,
+      openSvc: () => this.setState({ svcOpen: true }),
+      toggleSvc: (e) => { if (window.matchMedia("(max-width:820px)").matches) { e.preventDefault(); this.setState(st => ({ svcOpen: !st.svcOpen })); } },
+      menuClass: (s.menuOpen ? "fg-open" : "") + (s.svcOpen ? " fg-svc-open" : ""),
+      toggleMenu: () => this.setState(st => ({ menuOpen: !st.menuOpen })),
+      footerMenuClass: s.footerMenuOpen ? "fg-open" : "",
+      toggleFMenu: () => this.setState(st => ({ footerMenuOpen: !st.footerMenuOpen })),
+      closeSvc: () => this.setState({ svcOpen: false, menuOpen: false }),
+      svcOpacity: s.svcOpen ? 1 : 0,
+      svcPointer: s.svcOpen ? "auto" : "none",
+      svcShift: s.svcOpen ? "0px" : "-6px",
+      svcRot: s.svcOpen ? "180deg" : "0deg",
+      svcLinks: [
+        { label: "Reklamna štampa", href: "Reklamni Materijal.dc.html" },
+        { label: "Brojevi za kuću", href: "Brojevi Za Kuce.dc.html" },
+        { label: "Gravura metala", href: "UV Gravura.dc.html" },
+        { label: "Pokloni po želji", href: "Pokloni Po Zelji.dc.html" },
+        { label: "Trofejne plakete", href: "Trofejne Plakete.dc.html" },
+        { label: "Asortiman za kafiće", href: "Asortiman Za Kafice.dc.html" },
+      ].map((l, i) => ({
+        ...l,
+        op: s.svcOpen ? 1 : 0,
+        x: s.svcOpen ? "0px" : "-12px",
+        delay: s.svcOpen ? (i * 0.1) + "s" : "0s",
+      })),
+      options: [
+        { k: "Dimenzije", t: "Svaka veličina", d: "Od diskretnih do upadljivih — dimenzije prilagođene vašem objektu." },
+        { k: "Font", t: "Različiti fontovi", d: "Odaberite stil koji se uklapa u arhitekturu i vaš ukus." },
+        { k: "Materijal", t: "Kvalitetni materijali", d: "Otporni na sunce, vlagu i mraz — za dug vek trajanja." },
+      ],
+      feats: ["Otporni na vremenske uslove", "UV postojani", "Laserska obrada", "Za kuće i firme"],
+    };
+  }
+}
+</script>
+</body>
+</html>

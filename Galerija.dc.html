@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Galerija radova | Fiber Graphics</title>
+<meta name="description" content="Pogledajte izdvojene radove Fiber Graphics — gravura, reklamni materijal, brojevi za kuće i pokloni.">
+<meta property="og:title" content="Galerija radova | Fiber Graphics">
+<meta property="og:description" content="Pogledajte izdvojene radove Fiber Graphics — gravura, reklamni materijal, brojevi za kuće i pokloni.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/logo-mali.webp" type="image/webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Montserrat:wght@600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<meta name="ext-resource-dependency" content="assets/gal-1.webp">
+<meta name="ext-resource-dependency" content="assets/gal-2.webp">
+<meta name="ext-resource-dependency" content="assets/gal-3.webp">
+<meta name="ext-resource-dependency" content="assets/gal-4.webp">
+<meta name="ext-resource-dependency" content="assets/gal-5.webp">
+<meta name="ext-resource-dependency" content="assets/gal-6.webp">
+<meta name="ext-resource-dependency" content="assets/gal-7.webp">
+<meta name="ext-resource-dependency" content="assets/gal-8.webp">
+<meta name="ext-resource-dependency" content="assets/gal-9.webp">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:"Helvetica Neue",Helvetica,Arial,sans-serif; background:#f3f4f6; color:#1f2937; -webkit-font-smoothing:antialiased; }
+  a { color:#ff3737; text-decoration:none; }
+  a:hover { color:#e11d1d; }
+  ::selection { background:#ff3737; color:#f3f4f6; }
+  .fg-reveal { opacity: 0; transform: translateY(48px); transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1), transform 0.8s cubic-bezier(0.4,0,0.2,1); }
+  .fg-reveal.fg-in { opacity: 1; transform: none; }
+  @media (max-width:820px) { .fg-logo-big { display:none !important; } .fg-logo-mali { display:block !important; } }
+  .fg-navleft { display:flex; align-items:center; gap:14px; }
+  .fg-navright { display:flex; align-items:center; gap:30px; }
+  .fg-navlinks { display:flex; align-items:center; gap:30px; }
+  .fg-burger { display:none; background:none; border:none; cursor:pointer; padding:6px; }
+  .fg-fburger { display:none; background:none; border:none; cursor:pointer; padding:6px; }
+  .fg-fmenu { display:contents; }
+  @keyframes fg-navitem { from { opacity:0; transform:translateX(16px); } to { opacity:1; transform:translateX(0); } }
+  @keyframes fg-navup { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+  @media (max-width:820px) {
+    .fg-burger { display:flex; }
+    .fg-navlinks { position:absolute; top:100%; left:0; right:0; background:#000; flex-direction:column; align-items:flex-start; padding:20px 24px; gap:22px; box-shadow:0 18px 40px rgba(0,0,0,0.5); }
+    .fg-navlinks:not(.fg-open) { display:none; }
+    .fg-navlinks.fg-open > * { animation: fg-navitem 0.35s ease both; }
+    .fg-navlinks.fg-open > *:nth-child(1){animation-delay:0.05s}
+    .fg-navlinks.fg-open > *:nth-child(2){animation-delay:0.13s}
+    .fg-navlinks.fg-open > *:nth-child(3){animation-delay:0.21s}
+    .fg-navlinks.fg-open > *:nth-child(4){animation-delay:0.29s}
+    .fg-navlinks.fg-open > *:nth-child(5){animation-delay:0.37s}
+    .fg-svcdrop { left:0 !important; transform:none !important; padding-top:12px !important; z-index:40; }
+    .fg-navlinks.fg-svc-open > *:not(:nth-child(2)) { display:none; }
+    .fg-gal-grid { display:none !important; }
+    .fg-gal-slider { display:block !important; }
+    .fg-kontakt-grid { grid-template-columns:1fr !important; padding-right:0 !important; }
+    .fg-kontakt-info { padding:48px 24px 28px !important; }
+    .fg-kontakt-map { height:260px !important; margin:0 24px 40px !important; }
+    .fg-fburger { display:flex; }
+    .fg-foot-bar { flex-wrap:wrap; position:relative; }
+    .fg-fmenu:not(.fg-open) { display:none; }
+    .fg-fmenu.fg-open { display:flex !important; position:absolute; bottom:100%; left:0; right:0; background:#fff; flex-direction:column; gap:22px; padding:24px 32px; box-shadow:0 -18px 40px rgba(0,0,0,0.12); z-index:60; }
+    .fg-fmenu.fg-open .fg-fnav > * { animation: fg-navup 0.4s ease both; }
+    .fg-fmenu.fg-open .fg-fnav > *:nth-child(1) { animation-delay:0.05s; }
+    .fg-fmenu.fg-open .fg-fnav > *:nth-child(2) { animation-delay:0.12s; }
+    .fg-fmenu.fg-open .fg-fnav > *:nth-child(3) { animation-delay:0.19s; }
+    .fg-fmenu.fg-open .fg-fnav > *:nth-child(4) { animation-delay:0.26s; }
+    .fg-fmenu.fg-open .fg-fsocial { animation: fg-navup 0.4s ease 0.33s both; }
+    .fg-fnav { flex-direction:column; align-items:flex-start; gap:16px; }
+  }
+  @keyframes gal-fade { 0%,26% { opacity: 1; } 33%,93% { opacity: 0; } 100% { opacity: 1; } }
+  @keyframes fg-hero-bg { from { transform: translateY(-70px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  @keyframes fg-hero-text { from { transform: translateX(-60px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+  .fg-hero-bg { opacity: 0; transform: translateY(-70px); }
+  .fg-hero-text { opacity: 0; transform: translateX(-60px); }
+  .fg-hero-in .fg-hero-bg { animation: fg-hero-bg 1s cubic-bezier(0.22,1,0.36,1) forwards; }
+  .fg-hero-in .fg-hero-text { animation: fg-hero-text 0.9s cubic-bezier(0.22,1,0.36,1) 0.15s forwards; }
+  .gal-tile { opacity: 0; transform: translateY(40px) scale(0.98); transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1); }
+  .gal-tile.gal-in { opacity: 1; transform: none; }
+  .gal-tile:hover .gal-img { transform: scale(1.08); }
+  @keyframes lb-in { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
+</style>
+</helmet>
+<div style="background:#f3f4f6;color:#1f2937;overflow-x:clip;">
+  <header style="position:sticky;top:0;z-index:50;background:#000000;">
+    <nav style="position:relative;max-width:1240px;margin:0 auto;padding:18px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;">
+      <div class="fg-navleft">
+        <button class="fg-burger" onClick="{{ toggleMenu }}" aria-label="Meni"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 7h16M4 12h16M4 17h16" stroke="#e5e7eb" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <a href="Fiber Graphics.dc.html" style="display:flex;align-items:center;">
+          <img fetchpriority="high" class="fg-logo-big" src="assets/logo.svg" alt="Fiber Graphics" style="height:40px;width:auto;display:block;"><img fetchpriority="high" class="fg-logo-mali" src="assets/logo-mali.webp" alt="Fiber Graphics" style="height:38px;width:auto;border-radius:8px;display:none;">
+        </a>
+      </div>
+      <div class="fg-navright">
+      <div class="fg-navlinks {{ menuClass }}" style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:14px;letter-spacing:0.08em;text-transform:uppercase;">
+        <a href="Fiber Graphics.dc.html" style="color:#e5e7eb;transition:color 0.22s,transform 0.22s;" style-hover="color:#ff3737;transform:translateY(-2px);">Početna</a>
+        <div style="position:relative;" onMouseEnter="{{ openSvc }}" onMouseLeave="{{ closeSvc }}">
+          <a href="Fiber Graphics.dc.html#usluge" onClick="{{ toggleSvc }}" style="color:#e5e7eb;transition:color 0.22s;display:inline-flex;align-items:center;gap:6px;" style-hover="color:#ff3737;">Usluge <span style="display:flex;transform:rotate({{ svcRot }});transition:transform 0.22s;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9l6 6 6-6" stroke="#ff3737" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+          <div class="fg-svcdrop" style="position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY({{ svcShift }});padding-top:16px;opacity:{{ svcOpacity }};pointer-events:{{ svcPointer }};transition:opacity 0.2s,transform 0.2s;z-index:30;">
+            <div style="background:#ffffff;border:1px solid rgba(255,55,55,0.28);border-radius:12px;min-width:210px;padding:8px;box-shadow:0 18px 44px rgba(31,41,55,0.16);display:flex;flex-direction:column;">
+              <sc-for list="{{ svcLinks }}" as="l" hint-placeholder-count="6">
+                <a href="{{ l.href }}" style="font-family:'Montserrat',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.04em;text-transform:uppercase;color:#374151;padding:11px 14px;border-radius:8px;opacity:{{ l.op }};transform:translateX({{ l.x }});transition:opacity 0.35s ease {{ l.delay }},transform 0.35s ease {{ l.delay }},background 0.18s,color 0.18s;" style-hover="background:rgba(255,55,55,0.12);color:#ff3737;">{{ l.label }}</a>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+        <a href="Galerija.dc.html" style="color:#ff3737;transition:color 0.22s,transform 0.22s;" style-hover="color:#ff3737;transform:translateY(-2px);">Galerija</a>
+        <a href="#kontakt" style="color:#e5e7eb;transition:color 0.22s,transform 0.22s;" style-hover="color:#ff3737;transform:translateY(-2px);">Kontakt</a>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=office@fibergraphics.rs" target="_blank" rel="noopener" style="border:1px solid #ff3737;color:#ff3737;padding:10px 18px;border-radius:15px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;transition:background 0.22s,color 0.22s,transform 0.22s,box-shadow 0.22s;" style-hover="background:#ff3737;color:#f3f4f6;transform:translateY(-2px);box-shadow:0 8px 20px rgba(255,55,55,0.28);">Kontaktiraj nas</a>
+      </div>
+        <a href="Korpa.dc.html" aria-label="Korpa" style="position:relative;display:flex;align-items:center;justify-content:center;transition:transform 0.22s;" style-hover="transform:translateY(-2px);"><img src="assets/cart.webp" alt="Korpa" style="width:16px;height:16px;image-rendering:pixelated;filter:brightness(0) invert(1);display:block;"><sc-if value="{{ hasCartCount }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;top:-9px;right:-11px;min-width:17px;height:17px;padding:0 4px;border-radius:999px;background:#ff3737;color:#ffffff;font-family:'Montserrat',sans-serif;font-weight:700;font-size:10px;line-height:17px;text-align:center;box-shadow:0 0 0 2px #000000;">{{ cartCount }}</span></sc-if></a>
+      </div>
+    </nav>
+  </header>
+
+  <section id="hero-gal" style="position:relative;overflow:hidden;background:#0d1420;width:100%;min-height:78vh;">
+    <div class="fg-hero-bg" style="position:absolute;inset:0;">
+      <div style="position:absolute;inset:0;background:url('assets/galerija-2.webp') center center/cover no-repeat;animation:gal-fade 9s ease-in-out -6s infinite;"></div>
+      <div style="position:absolute;inset:0;background:url('assets/galerija-3.webp') center center/cover no-repeat;animation:gal-fade 9s ease-in-out -3s infinite;"></div>
+      <div style="position:absolute;inset:0;background:url('assets/galerija-1.webp') center center/cover no-repeat;animation:gal-fade 9s ease-in-out infinite;"></div>
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,13,24,0.72),rgba(6,13,24,0.72));"></div>
+    </div>
+    <div style="position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 32px;">
+    <div class="fg-hero-text">
+    <h1 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:52px;letter-spacing:-0.02em;color:#f6f7f9;">Galerija</h1>
+    <p style="margin:18px auto 0;max-width:540px;font-size:17px;line-height:1.6;color:#ffffff;">Pregledajte izbor naših radova — reklamni materijal, kućni brojevi, gravure i personalizovani pokloni.</p>
+    </div>
+    </div>
+  </section>
+
+  <section style="background:#1F2937;padding:56px 0 90px;">
+    <div style="max-width:1160px;margin:0 auto;padding:0 32px;">
+    <div class="fg-gal-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+      <sc-for list="{{ tiles }}" as="t" hint-placeholder-count="9">
+        <div onClick="{{ t.open }}" class="gal-tile" style="height:280px;background:{{ t.bg }};border:1px solid rgba(255,255,255,0.08);border-radius:4px;display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:pointer;transition:opacity 0.7s cubic-bezier(0.22,1,0.36,1),transform 0.7s cubic-bezier(0.22,1,0.36,1),box-shadow 0.3s ease;" style-hover="box-shadow:0 12px 30px rgba(0,0,0,0.4);">
+          <sc-if value="{{ t.img }}" hint-placeholder-val="{{ false }}">
+            <img loading="lazy" decoding="async" src="{{ t.img }}" alt="Rad {{ t.n }}" style="width:100%;height:100%;object-fit:{{ t.fit }};display:block;transition:transform 0.35s ease;" class="gal-img">
+          </sc-if>
+          <sc-if value="{{ t.noImg }}" hint-placeholder-val="{{ true }}">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;color:#6b7688;text-transform:uppercase;">[ foto {{ t.n }} ]</span>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+    <div class="fg-gal-slider" style="display:none;position:relative;overflow:hidden;border-radius:6px;">
+      <div style="display:flex;transition:{{ galTrans }};transform:translateX(-{{ galOffset }});">
+        <sc-for list="{{ galLoop }}" as="t" hint-placeholder-count="2">
+          <div onClick="{{ t.open }}" style="flex:0 0 100%;height:360px;background:{{ t.bg }};display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:pointer;">
+            <sc-if value="{{ t.img }}" hint-placeholder-val="{{ false }}">
+              <img loading="lazy" decoding="async" src="{{ t.img }}" alt="Rad {{ t.n }}" style="width:100%;height:100%;object-fit:{{ t.fit }};display:block;">
+            </sc-if>
+            <sc-if value="{{ t.noImg }}" hint-placeholder-val="{{ true }}">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;color:#6b7688;text-transform:uppercase;">[ foto {{ t.n }} ]</span>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display:flex;justify-content:center;gap:9px;margin-top:20px;">
+        <sc-for list="{{ galDots }}" as="d" hint-placeholder-count="9">
+          <button onClick="{{ d.go }}" aria-label="Slajd" style="width:9px;height:9px;border-radius:50%;border:none;padding:0;cursor:pointer;background:{{ d.color }};transition:background 0.2s,transform 0.2s;" style-hover="transform:scale(1.3);"></button>
+        </sc-for>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <sc-if value="{{ lbOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ lbClose }}" style="position:fixed;inset:0;z-index:9999;background:rgba(9,13,20,0.92);display:flex;align-items:center;justify-content:center;padding:40px;animation:lb-in 0.3s ease;">
+      <button onClick="{{ lbClose }}" aria-label="Zatvori" style="position:absolute;top:24px;right:28px;width:46px;height:46px;border-radius:50%;border:none;background:rgba(255,255,255,0.1);color:#fff;font-size:22px;cursor:pointer;transition:background 0.2s;" style-hover="background:#ff3737;">✕</button>
+      <div onClick="{{ lbStop }}" style="position:relative;width:100%;max-width:900px;">
+        <div style="overflow:hidden;border-radius:6px;background:#141c2b;">
+          <div style="display:flex;will-change:transform;transition:{{ lbTrans }};transform:translateX(-{{ lbOffset }});">
+            <sc-for list="{{ lbLoop }}" as="c" hint-placeholder-count="2">
+              <div style="flex:0 0 100%;height:70vh;display:flex;align-items:center;justify-content:center;background:#141c2b;">
+                <sc-if value="{{ c.img }}" hint-placeholder-val="{{ false }}">
+                  <img loading="lazy" decoding="async" src="{{ c.img }}" alt="Rad {{ c.n }}" style="max-width:100%;max-height:100%;object-fit:contain;display:block;">
+                </sc-if>
+                <sc-if value="{{ c.noImg }}" hint-placeholder-val="{{ true }}">
+                  <span style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.1em;color:#6b7688;text-transform:uppercase;">[ foto {{ c.n }} ]</span>
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <button onClick="{{ lbPrev }}" aria-label="Prethodna" style="position:absolute;bottom:18px;left:18px;width:52px;height:52px;border-radius:50%;border:none;background:#ffffff;color:#1f2937;font-size:22px;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,0.4);transition:background 0.2s,color 0.2s;" style-hover="background:#ff3737;color:#fff;">‹</button>
+        <button onClick="{{ lbNext }}" aria-label="Sledeća" style="position:absolute;bottom:18px;right:18px;width:52px;height:52px;border-radius:50%;border:none;background:#ffffff;color:#1f2937;font-size:22px;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,0.4);transition:background 0.2s,color 0.2s;" style-hover="background:#ff3737;color:#fff;">›</button>
+      </div>
+    </div>
+  </sc-if>
+  </section>
+
+  <!-- KONTAKT -->
+  <section id="kontakt" style="padding:80px 0;background:#f0f1f3;">
+    <div class="fg-kontakt-grid" style="background:#f0f1f3;display:grid;grid-template-columns:1fr 435px;align-items:center;padding-right:150px;">
+      <div class="fg-kontakt-info" style="padding:56px 48px 56px 150px;">
+        <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:36px;letter-spacing:-0.02em;color:#1f2937;line-height:1.1;">Kontaktirajte nas</h2>
+        <p style="margin-top:16px;font-size:16px;line-height:1.6;color:#6b7280;max-width:380px;">Pišite nam ili pozovite – brzo, jednostavno i bez komplikacija.</p>
+        <div style="margin-top:36px;display:flex;flex-direction:column;gap:22px;">
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="5" width="18" height="14" rx="2" stroke="#ff3737" stroke-width="2"/><path d="M4 7l8 6 8-6" stroke="#ff3737" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#9ca3af;text-transform:uppercase;">E-mail</span></div>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=office@fibergraphics.rs" target="_blank" rel="noopener" style="font-size:18px;color:#1f2937;" style-hover="color:#ff3737;">office@fibergraphics.rs</a>
+          </div>
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 005 5L16 13l5 2v3a2 2 0 01-2 2A16 16 0 013 5a2 2 0 012-1z" stroke="#ff3737" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#9ca3af;text-transform:uppercase;">Telefon</span></div>
+            <a href="tel:+381601415900" style="font-size:18px;color:#1f2937;" style-hover="color:#ff3737;">+381 60 1415 900</a>
+          </div>
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 21s7-6.2 7-11a7 7 0 10-14 0c0 4.8 7 11 7 11z" stroke="#ff3737" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.5" stroke="#ff3737" stroke-width="2"/></svg><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#9ca3af;text-transform:uppercase;">Adresa</span></div>
+            <a href="https://maps.app.goo.gl/VWrcq1JF8EeAAm9v5" style="font-size:18px;color:#1f2937;" style-hover="color:#ff3737;">Kosovska 53, Aranđelovac</a>
+          </div>
+        </div>
+      </div>
+      <div class="fg-kontakt-map" style="border:1px solid rgba(31,41,55,0.12);border-radius:12px;height:310px;overflow:hidden;">
+        <iframe title="Kosovska 53, Aranđelovac" src="https://maps.google.com/maps?q=Kosovska%2053%2C%20Aran%C4%91elovac&t=&z=16&ie=UTF8&iwloc=&output=embed" style="width:100%;height:100%;border:0;display:block;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <footer style="border-top:1px solid rgba(31,41,55,0.1);">
+    <div class="fg-foot-bar" style="max-width:1240px;margin:0 auto;padding:48px 32px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;">
+      <div class="fg-foot-left" style="display:flex;align-items:center;gap:14px;">
+        <button class="fg-fburger" onClick="{{ toggleFMenu }}" aria-label="Meni"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 7h16M4 12h16M4 17h16" stroke="#4b5563" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <a href="Fiber Graphics.dc.html#top" aria-label="Početna" style="display:flex;align-items:center;"><img fetchpriority="high" class="fg-logo-big" src="assets/logo.svg" alt="Fiber Graphics" style="height:37px;width:auto;display:block;"><img fetchpriority="high" class="fg-logo-mali" src="assets/logo-mali.webp" alt="Fiber Graphics" style="height:36px;width:auto;border-radius:8px;display:none;"></a>
+      </div>
+      <div class="fg-fmenu {{ footerMenuClass }}">
+      <div class="fg-fnav" style="display:flex;gap:40px;flex-wrap:wrap;font-family:'Montserrat',sans-serif;font-weight:700;font-size:17px;letter-spacing:0.08em;text-transform:uppercase;">
+        <a href="Fiber Graphics.dc.html" style="color:#4b5563;transition:color 0.3s ease,transform 0.3s ease;" style-hover="color:#ff3737;transform:translateY(-2px);">Početna</a>
+        <a href="Fiber Graphics.dc.html#usluge" style="color:#4b5563;transition:color 0.3s ease,transform 0.3s ease;" style-hover="color:#ff3737;transform:translateY(-2px);">Usluge</a>
+        <a href="Galerija.dc.html" style="color:#4b5563;transition:color 0.3s ease,transform 0.3s ease;" style-hover="color:#ff3737;transform:translateY(-2px);">Galerija</a>
+        <a href="#kontakt" style="color:#4b5563;transition:color 0.3s ease,transform 0.3s ease;" style-hover="color:#ff3737;transform:translateY(-2px);">Kontakt</a>
+      </div>
+      <div class="fg-fsocial" style="display:flex;gap:18px;align-items:center;">
+        <a href="https://www.instagram.com/fiber.graphics/" target="_blank" rel="noopener" aria-label="Instagram" style="color:#4b5563;display:flex;transition:color 0.3s ease,transform 0.3s ease;" style-hover="color:#ff3737;transform:translateY(-3px) scale(1.12);"><svg width="25" height="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg></a>
+        <a href="https://www.facebook.com/profile.php?id=61573630137463" target="_blank" rel="noopener" aria-label="Facebook" style="color:#4b5563;display:flex;transition:color 0.3s ease,transform 0.3s ease;" style-hover="color:#ff3737;transform:translateY(-3px) scale(1.12);"><svg width="25" height="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 8.5V6.8c0-.8.3-1.3 1.4-1.3H17V2.6c-.5-.1-1.4-.2-2.4-.2-2.4 0-3.9 1.4-3.9 4v2.1H8.2V12h2.5v9.4h3.3V12h2.5l.4-3.5H14z" fill="currentColor"/></svg></a>
+        <a href="#" aria-label="TikTok" style="color:#4b5563;display:flex;transition:color 0.3s ease,transform 0.3s ease;" style-hover="color:#ff3737;transform:translateY(-3px) scale(1.12);"><svg width="25" height="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 3c.3 2.2 1.6 3.7 3.8 3.9v2.5c-1.3.1-2.5-.3-3.8-1.1v5.6c0 3.5-2.6 5.6-5.6 5.1-2.5-.4-4-2.3-4-4.8 0-2.9 2.6-4.9 5.5-4.4v2.7c-.4-.1-.8-.2-1.2-.2-1.2 0-2 .8-2 1.9 0 1.2.9 2 2 2s1.9-.8 1.9-2.1V3H15z" fill="currentColor"/></svg></a>
+        <a href="#" aria-label="LinkedIn" style="color:#4b5563;display:flex;transition:color 0.3s ease,transform 0.3s ease;" style-hover="color:#ff3737;transform:translateY(-3px) scale(1.12);"><svg width="25" height="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="2"/><path d="M7 10v7M7 7.5v.01M11 17v-4c0-1.1.9-2 2-2s2 .9 2 2v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
+      </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(31,41,55,0.08);">
+      <div style="max-width:1240px;margin:0 auto;padding:22px 32px;font-family:'JetBrains Mono',monospace;font-size:14px;color:#6b7280;text-align:center;">© 2026 Fiber Graphics DOO. Sva prava zadržana.</div>
+    </div>
+  </footer>
+</div>
+
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#ff3737"/><text x="50" y="63" font-family="sans-serif" font-size="34" font-weight="700" fill="#fff" text-anchor="middle">FG</text></svg></template></x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { cartCount: 0, svcOpen: false, menuOpen: false, footerMenuOpen: false, lbOpen: false, lbIdx: 0, lbSnap: false, galIdx: 0, galSnap: false };
+  componentDidUpdate() {
+    const N = 9;
+    if (this.state.galIdx === N && !this.state.galSnap && !this._gs) {
+      this._gs = true;
+      this._gsT = setTimeout(() => {
+        this.setState({ galIdx: 0, galSnap: true }, () => {
+          requestAnimationFrame(() => { this.setState({ galSnap: false }); this._gs = false; });
+        });
+      }, 470);
+    }
+    if (!this.state.lbOpen) return;
+    if (this.state.lbIdx === N + 1 && !this.state.lbSnap && !this._lbs) {
+      this._lbs = true;
+      this._lbsT = setTimeout(() => {
+        this.setState({ lbIdx: 1, lbSnap: true }, () => {
+          requestAnimationFrame(() => { this.setState({ lbSnap: false }); this._lbs = false; });
+        });
+      }, 470);
+    }
+    if (this.state.lbIdx === 0 && !this.state.lbSnap && !this._lbs2) {
+      this._lbs2 = true;
+      this._lbsT2 = setTimeout(() => {
+        this.setState({ lbIdx: N, lbSnap: true }, () => {
+          requestAnimationFrame(() => { this.setState({ lbSnap: false }); this._lbs2 = false; });
+        });
+      }, 470);
+    }
+  }
+  componentDidMount() {
+    this._syncCart = () => { try { const c = JSON.parse(localStorage.getItem("fg-cart") || "[]"); this.setState({ cartCount: Array.isArray(c) ? c.length : 0 }); } catch (e) {} };
+    this._syncCart(); window.addEventListener("storage", this._syncCart); window.addEventListener("fg-cart-change", this._syncCart);
+    this._revealT = setTimeout(() => {
+      const secs = Array.from(document.querySelectorAll('section, footer')).filter(el => !(el.id || '').startsWith('hero'));
+      if (!secs.length || !('IntersectionObserver' in window)) return;
+      secs.forEach(el => el.classList.add('fg-reveal'));
+      this._revealIo = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('fg-in'); else e.target.classList.remove('fg-in'); });
+      }, { threshold: 0.12 });
+      secs.forEach(el => this._revealIo.observe(el));
+    }, 100);
+    const el = document.getElementById('hero-gal');
+    if (!el || !('IntersectionObserver' in window)) { if (el) el.classList.add('fg-hero-in'); return; }
+    this._heroIo = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('fg-hero-in');
+        else e.target.classList.remove('fg-hero-in');
+      });
+    }, { threshold: 0.2 });
+    this._heroIo.observe(el);
+    this._galAuto = setInterval(() => {
+      if (this.state.lbOpen) return;
+      this.setState(st => ({ galIdx: st.galIdx + 1, galSnap: false }));
+    }, 2000);
+    this._tileT = setTimeout(() => {
+      const tiles = document.querySelectorAll('.gal-tile');
+      if (!tiles.length || !('IntersectionObserver' in window)) return;
+      this._tileIo = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) e.target.classList.add('gal-in');
+          else e.target.classList.remove('gal-in');
+        });
+      }, { threshold: 0.15 });
+      tiles.forEach(t => this._tileIo.observe(t));
+    }, 100);
+  }
+  componentWillUnmount() { clearTimeout(this._revealT); if (this._revealIo) this._revealIo.disconnect(); if (this._heroIo) this._heroIo.disconnect(); clearTimeout(this._tileT); if (this._tileIo) this._tileIo.disconnect(); clearTimeout(this._lbsT); clearTimeout(this._lbsT2); clearInterval(this._galAuto); clearTimeout(this._gsT); }
+  renderVals() {
+    const s = this.state;
+    return {
+      cartCount: s.cartCount, hasCartCount: s.cartCount > 0,
+      openSvc: () => this.setState({ svcOpen: true }),
+      toggleSvc: (e) => { if (window.matchMedia("(max-width:820px)").matches) { e.preventDefault(); this.setState(st => ({ svcOpen: !st.svcOpen })); } },
+      menuClass: (s.menuOpen ? "fg-open" : "") + (s.svcOpen ? " fg-svc-open" : ""),
+      toggleMenu: () => this.setState(st => ({ menuOpen: !st.menuOpen })),
+      footerMenuClass: s.footerMenuOpen ? "fg-open" : "",
+      toggleFMenu: () => this.setState(st => ({ footerMenuOpen: !st.footerMenuOpen })),
+      closeSvc: () => this.setState({ svcOpen: false, menuOpen: false }),
+      svcOpacity: s.svcOpen ? 1 : 0,
+      svcPointer: s.svcOpen ? "auto" : "none",
+      svcShift: s.svcOpen ? "0px" : "-6px",
+      svcRot: s.svcOpen ? "180deg" : "0deg",
+      svcLinks: [
+        { label: "Reklamna štampa", href: "Reklamni Materijal.dc.html" },
+        { label: "Brojevi za kuću", href: "Brojevi Za Kuce.dc.html" },
+        { label: "Gravura metala", href: "UV Gravura.dc.html" },
+        { label: "Pokloni po želji", href: "Pokloni Po Zelji.dc.html" },
+        { label: "Trofejne plakete", href: "Trofejne Plakete.dc.html" },
+        { label: "Asortiman za kafiće", href: "Asortiman Za Kafice.dc.html" },
+      ].map((l, i) => ({
+        ...l,
+        op: s.svcOpen ? 1 : 0,
+        x: s.svcOpen ? "0px" : "-12px",
+        delay: s.svcOpen ? (i * 0.1) + "s" : "0s",
+      })),
+      items: [1,2,3,4,5,6,7,8,9],
+      tiles: [
+        { n:1, h:"230px" }, { n:2, h:"280px" }, { n:3, h:"210px" },
+        { n:4, h:"190px" }, { n:5, h:"240px" }, { n:6, h:"260px" },
+        { n:7, h:"280px" }, { n:8, h:"340px" }, { n:9, h:"320px" },
+      ].map(t => { const imgs = { 1:"assets/gal-1.webp", 2:"assets/gal-2.webp", 3:"assets/gal-3.webp", 4:"assets/gal-4.webp", 5:"assets/gal-5.webp", 6:"assets/gal-6.webp", 7:"assets/gal-7.webp", 8:"assets/gal-8.webp", 9:"assets/gal-9.webp" }; const img = imgs[t.n] || null; const placeholder = "repeating-linear-gradient(135deg,#2b3648,#2b3648 11px,#232d3d 11px,#232d3d 22px)"; return { ...t, img, noImg: !img, fit: t.n === 8 ? "contain" : "cover", bg: t.n === 8 ? "#ffffff" : (img ? "#141c2b" : placeholder), h: t.n === 8 ? "420px" : t.h, open: () => this.setState({ lbOpen: true, lbIdx: t.n, lbSnap: false }) }; }),
+      galOffset: (s.galIdx * 100) + "%",
+      galTrans: s.galSnap ? "none" : "transform 0.6s cubic-bezier(0.4,0,0.2,1)",
+      galLoop: (() => { const imgs = { 1:"assets/gal-1.webp", 2:"assets/gal-2.webp", 3:"assets/gal-3.webp", 4:"assets/gal-4.webp", 5:"assets/gal-5.webp", 6:"assets/gal-6.webp", 7:"assets/gal-7.webp", 8:"assets/gal-8.webp", 9:"assets/gal-9.webp" }; const a = [1,2,3,4,5,6,7,8,9].map(n => ({ n, img: imgs[n] || null, noImg: !imgs[n], fit: n === 8 ? "contain" : "cover", bg: n === 8 ? "#ffffff" : (imgs[n] ? "#141c2b" : "repeating-linear-gradient(135deg,#2b3648,#2b3648 11px,#232d3d 11px,#232d3d 22px)"), open: () => this.setState({ lbOpen: true, lbIdx: n, lbSnap: false }) })); return [...a, a[0]]; })(),
+      galDots: [0,1,2,3,4,5,6,7,8].map(i => ({ color: (s.galIdx % 9) === i ? "#ff3737" : "rgba(255,255,255,0.3)", go: () => this.setState({ galIdx: i, galSnap: false }) })),
+      galNext: () => this.setState(st => ({ galIdx: st.galIdx + 1, galSnap: false })),
+      galPrev: () => this.setState(st => {
+        if (st.galIdx === 0) return { galIdx: 8, galSnap: true };
+        return { galIdx: st.galIdx - 1, galSnap: false };
+      }),
+      lbOpen: s.lbOpen,
+      lbClose: () => this.setState({ lbOpen: false }),
+      lbStop: (e) => e.stopPropagation(),
+      lbOffset: (s.lbIdx * 100) + "%",
+      lbTrans: s.lbSnap ? "none" : "transform 0.45s cubic-bezier(0.4,0,0.2,1)",
+      lbLoop: (() => { const imgs = { 1:"assets/gal-1.webp", 2:"assets/gal-2.webp", 3:"assets/gal-3.webp", 4:"assets/gal-4.webp", 5:"assets/gal-5.webp", 6:"assets/gal-6.webp", 7:"assets/gal-7.webp", 8:"assets/gal-8.webp", 9:"assets/gal-9.webp" }; const a = [1,2,3,4,5,6,7,8,9].map(n => ({ n, img: imgs[n] || null, noImg: !imgs[n] })); return [a[8], ...a, a[0]]; })(),
+      lbPrev: () => this.setState(st => ({ lbIdx: st.lbIdx - 1, lbSnap: false })),
+      lbNext: () => this.setState(st => ({ lbIdx: st.lbIdx + 1, lbSnap: false })),
+    };
+  }
+}
+</script>
+</body>
+</html>
